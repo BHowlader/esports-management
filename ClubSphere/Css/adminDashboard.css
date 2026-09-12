@@ -1,0 +1,224 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background-color: #e8edf7;
+    min-height: 100vh;
+}
+
+.dashboard {
+    display: flex;
+    min-height: 100vh;
+    padding: 15px;
+    gap: 25px;
+}
+
+
+/* SIDEBAR */
+
+.sidebar {
+    width: 180px;
+    background-color: white;
+    border-radius: 20px;
+    padding: 20px 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.logo {
+    width: 90px;
+    height: auto;
+    margin-bottom: 5px;
+}
+
+.club-name {
+    font-size: 13px;
+    margin-bottom: 25px;
+}
+
+.welcome {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 7px;
+    font-size: 12px;
+    margin-bottom: 25px;
+}
+
+.admin-icon {
+    font-size: 13px;
+}
+
+
+/* MENU */
+
+.menu {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.menu a,
+.logout {
+    width: 100%;
+    padding: 10px 5px;
+    background-color: #e8edf7;
+    border-radius: 15px;
+    text-decoration: none;
+    color: #333;
+    text-align: center;
+    font-size: 11px;
+}
+
+
+.menu a:hover,
+.logout:hover {
+    background-color: #dce2ef;
+}
+
+.logout { 
+    margin-top: 80px;
+}
+
+
+/* MAIN CONTENT */
+
+.main-content {
+    flex: 1;
+    padding: 10px;
+}
+
+
+/* TOP CARDS */
+
+.top-cards {
+    display: flex;
+    justify-content: space-between;
+    gap: 25px;
+    margin-bottom: 30px;
+}
+
+
+
+.card { 
+    background-color: white; 
+    border-radius: 20px; 
+    height: 180px; 
+    flex: 1; 
+    display: flex; 
+    align-items: center; 
+    justify-content: center; 
+}
+
+.card img {
+    width: 55px;
+    height: 55px;
+    object-fit: contain;
+}
+
+
+/* PRX CARD */
+
+.team-card {
+    flex-direction: column;
+}
+
+.team-card img {
+    width: 50px;
+    height: 50px;
+}
+
+.team-card p { 
+    margin: 5px 0 0; 
+    font-family: Georgia, serif;
+    font-size: 14px; 
+    color: navy;
+} 
+ 
+.members-card p, 
+.fund-card p,
+.members-card span, 
+.fund-card span { 
+    font-family: Georgia, serif;
+    font-size: 18px;
+    color: navy;
+    margin: 0;
+    font-weight: 500;
+}
+
+/* FUND CARD */
+
+.fund-card {
+    gap: 15px;
+}
+
+
+/* UPCOMING EVENTS */
+
+.events-card {
+    background-color: white;
+    border-radius: 20px;
+    padding: 20px;
+}
+
+.events-card h2 {
+    text-align: center;
+    font-size: 14px;
+    font-weight: normal;
+    margin: 0 0 15px;
+}
+
+.events-box {
+    border: 4px solid #dddddd;
+    height: 230px;
+    position: relative;
+}
+
+.events-top {
+    height: 15px;
+    border-bottom: 4px solid #dddddd;
+}
+
+.events-message {
+    height: calc(100% - 15px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 11px;
+}
+
+
+
+
+.registration-card {
+    background-color: white;
+    border-radius: 20px;
+    padding: 15px;
+    margin-top: 20px;
+    width: 250px;
+    height: 110px;
+    text-align: center;
+}
+
+.registration-card h2 {
+    font-size: 13px;
+    font-weight: normal;
+    margin: 0 0 10px;
+}
+
+#registrationCount {
+    font-size: 25px;
+    font-weight: bold;
+}
+
+.registration-card p {
+    font-size: 10px;
+    margin: 5px 0 0;
+}

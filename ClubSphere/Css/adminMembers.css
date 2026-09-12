@@ -1,0 +1,105 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    padding: 30px;
+    font-family: Arial, sans-serif;
+    background-color: #e8edf7;
+    min-height: 100vh;
+}
+
+                      /* MAIN CONTAINER */
+
+.members-container {
+    width: 90%;
+    max-width: 900px;
+    margin: 0 auto;
+    background-color: white;
+    border-radius: 25px;
+    padding: 30px 40px;
+}
+
+              /* HEADING */
+
+h1 {
+    text-align: center;
+    font-size: 22px;
+    font-weight: normal;
+    margin: 5px 0 30px;
+}
+
+           /* MEMBER CARD */
+
+.member-card {
+    background-color: #f1f3f8;
+    border-radius: 15px;
+    padding: 20px 25px;
+    margin-bottom: 18px;
+}
+
+.member-card p {
+    margin: 8px 0;
+    font-size: 14px;
+}
+
+          /* BUTTON AREA */
+
+.button-area {
+    margin-top: 18px;
+    display: flex;
+    gap: 10px;
+}
+
+             /* BUTTONS */
+
+button {
+    border: none;
+    border-radius: 20px;
+    padding: 9px 22px;
+    font-size: 13px;
+    cursor: pointer;
+}
+
+.back-button {
+    display: block;
+    width: 150px;
+    margin: 0 auto 25px;
+    padding: 9px;
+    text-align: center;
+    text-decoration: none;
+    color: #222;
+    background-color: #edf1f8;
+    border-radius: 20px;
+    font-size: 13px;
+}
+
+.back-button:hover {
+    background-color: #e2e7f0;
+}
+
+.approve {
+    background-color: #a9e88e;
+}
+
+.reject {
+    background-color: #ed7777;
+}
+
+.approve:hover {
+    background-color: #91d875;
+}
+
+.reject:hover {
+    background-color: #df5f5f;
+}
+
+          /* NO PENDING USERS */
+
+.no-users {
+    text-align: center;
+    font-size: 14px;
+    color: #666;
+    padding: 30px;
+}
