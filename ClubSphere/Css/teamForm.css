@@ -1,0 +1,182 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    padding: 40px 0;
+    font-family: Arial, sans-serif;
+    background-color: #e8edf7;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.form-container {
+    width: 470px;
+    background-color: white;
+    padding: 35px 45px;
+    border-radius: 25px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+}
+
+.form-container.wide {
+    width: 620px;
+}
+
+h1 {
+    text-align: center;
+    font-size: 22px;
+    font-weight: normal;
+    margin: 0 0 15px;
+}
+
+.back-button {
+    display: block;
+    width: 150px;
+    margin: 0 auto 20px;
+    padding: 9px;
+    text-align: center;
+    text-decoration: none;
+    color: #222;
+    background-color: #edf1f8;
+    border-radius: 20px;
+    font-size: 13px;
+}
+
+.back-button:hover {
+    background-color: #e2e7f0;
+}
+
+.note {
+    text-align: center;
+    font-size: 12px;
+    color: #888;
+    margin: 0 0 22px;
+}
+
+.message {
+    text-align: center;
+    font-size: 13px;
+    color: #2d6a4f;
+    background-color: #e4f5e9;
+    padding: 10px;
+    border-radius: 15px;
+    margin-bottom: 20px;
+}
+
+                      /* FORM FIELDS */
+
+.form-group {
+    margin-bottom: 18px;
+}
+
+label {
+    display: block;
+    font-size: 14px;
+    margin-bottom: 6px;
+}
+
+input[type="text"],
+select,
+textarea {
+    width: 100%;
+    padding: 8px 12px;
+    border: none;
+    background-color: #f1f1f1;
+    font-family: Arial, sans-serif;
+    font-size: 13px;
+    outline: none;
+}
+
+input[type="text"],
+select {
+    height: 38px;
+}
+
+textarea {
+    height: 90px;
+    resize: vertical;
+}
+
+input[type="text"]:focus,
+select:focus,
+textarea:focus {
+    background-color: #eeeeee;
+}
+
+.error {
+    display: block;
+    color: #d9534f;
+    font-size: 11px;
+    margin-top: 3px;
+}
+
+                      /* BUTTONS */
+
+button {
+    display: block;
+    margin: 25px auto 0;
+    width: 150px;
+    height: 36px;
+    border: none;
+    border-radius: 20px;
+    background-color: #a9e88e;
+    font-size: 13px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #91d875;
+}
+
+                      /* INVITATION CARDS */
+
+.invite-card {
+    background-color: #f1f3f8;
+    border-radius: 15px;
+    padding: 20px 25px;
+    margin-bottom: 18px;
+}
+
+.invite-card p {
+    margin: 8px 0;
+    font-size: 14px;
+}
+
+.button-area {
+    margin-top: 18px;
+    display: flex;
+    gap: 10px;
+}
+
+.button-area button {
+    margin: 0;
+    width: auto;
+    height: auto;
+    padding: 9px 22px;
+}
+
+.approve {
+    background-color: #a9e88e;
+}
+
+.reject {
+    background-color: #ed7777;
+}
+
+.approve:hover {
+    background-color: #91d875;
+}
+
+.reject:hover {
+    background-color: #df5f5f;
+}
+
+.no-users {
+    text-align: center;
+    font-size: 14px;
+    color: #666;
+    padding: 30px;
+}
