@@ -133,7 +133,7 @@ moderator can show why a result was rejected and what was submitted instead.
 `CREATE TABLE IF NOT EXISTS`, because FR11–FR15 cannot be demonstrated without
 somewhere for teams and tournaments to live. They are yours. Importing your file
 after mine will not wipe anything. Once your module is merged, delete that block
-from `Sql/fr11_15_matches_fund.sql` — I will do it in a follow-up PR.
+from `Sql/03_matches_fund.sql` — I will do it in a follow-up PR.
 
 **For FR16–FR20 (expenses).** Write your expenses to the **same** `transaction`
 table with `transaction_type = 'Expense'`, plus your own `expense` table in your
@@ -178,7 +178,7 @@ ClubSphere/Views/adminFund.php
 ClubSphere/Css/moderatorDashboard.css
 ClubSphere/Css/matchPages.css
 ClubSphere/Js/*.js                        (5 files)
-ClubSphere/Sql/fr11_15_matches_fund.sql
+ClubSphere/Sql/03_matches_fund.sql
 ClubSphere/Uploads/results/.htaccess
 ```
 
@@ -206,7 +206,7 @@ Against a live MariaDB 10.11 instance with the real `users` table:
 
 ## Reviewer checklist
 
-- [ ] `Sql/fr11_15_matches_fund.sql` imports cleanly in phpMyAdmin on top of the
+- [ ] `Sql/03_matches_fund.sql` imports cleanly in phpMyAdmin on top of the
       existing `clubsphere` database
 - [ ] Moderator login lands on the dashboard instead of a 404
 - [ ] Schedule a match, submit a result as a member, verify it as a moderator,
