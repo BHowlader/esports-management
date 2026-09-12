@@ -82,7 +82,6 @@ if($_SERVER["REQUEST_METHOD"] == "POST")
         {
             $finfo    = finfo_open(FILEINFO_MIME_TYPE);
             $mimeType = finfo_file($finfo, $_FILES["screenshot"]["tmp_name"]);
-            finfo_close($finfo);
 
             $allowed = array(
                 "image/jpeg" => "jpg",

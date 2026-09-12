@@ -55,22 +55,22 @@ if($role != "Moderator" && $role != "Admin")
 
             <div class="member-card">
 
-                <p>Team: <?php echo $team["team_name"]; ?></p>
+                <p>Team: <?php echo htmlspecialchars($team["team_name"] ?? ""); ?></p>
 
-                <p>Game: <?php echo $team["game_name"]; ?></p>
+                <p>Game: <?php echo htmlspecialchars($team["game_name"] ?? ""); ?></p>
 
-                <p>Captain: <?php echo $team["captain_name"]; ?></p>
+                <p>Captain: <?php echo htmlspecialchars($team["captain_name"] ?? ""); ?></p>
 
-                <p>Accepted Members: <?php echo $team["member_count"]; ?></p>
+                <p>Accepted Members: <?php echo htmlspecialchars($team["member_count"] ?? ""); ?></p>
 
-                <p>Created: <?php echo $team["created_date"]; ?></p>
+                <p>Created: <?php echo htmlspecialchars($team["created_date"] ?? ""); ?></p>
 
-                <p>Status: <?php echo $team["status"]; ?></p>
+                <p>Status: <?php echo htmlspecialchars($team["status"] ?? ""); ?></p>
 
 
                 <div class="button-area">
 
-                    <a href="editTeam.php?team_id=<?php echo $team["team_id"]; ?>"
+                    <a href="editTeam.php?team_id=<?php echo htmlspecialchars($team["team_id"] ?? ""); ?>"
                        class="edit-button">Edit Team</a>
 
                 </div>

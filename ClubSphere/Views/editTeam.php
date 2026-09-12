@@ -28,7 +28,7 @@ if(!$team)
 
 <head>
 
-    <title>Edit <?php echo $team["team_name"]; ?></title>
+    <title>Edit <?php echo htmlspecialchars($team["team_name"] ?? ""); ?></title>
 
     <link rel="stylesheet" href="../Css/manageTeams.css">
 
@@ -58,7 +58,7 @@ if(!$team)
 
             <form action="../Controls/teamControls.php" method="post">
 
-                <input type="hidden" name="team_id" value="<?php echo $team["team_id"]; ?>">
+                <input type="hidden" name="team_id" value="<?php echo htmlspecialchars($team["team_id"] ?? ""); ?>">
 
 
                 <div class="form-group">
@@ -132,12 +132,12 @@ if(!$team)
                                 if($player["u_id"] == $team["captain_id"])
                                 {
                                     echo "<option value='" . $player["u_id"] . "' selected>"
-                                       . $player["name"] . "</option>";
+                                       . htmlspecialchars($player["name"]) . "</option>";
                                 }
                                 else
                                 {
                                     echo "<option value='" . $player["u_id"] . "'>"
-                                       . $player["name"] . "</option>";
+                                       . htmlspecialchars($player["name"]) . "</option>";
                                 }
                             }
                         }
@@ -179,25 +179,25 @@ if(!$team)
 
             <div class="member-card">
 
-                <p>Name: <?php echo $player["name"]; ?></p>
+                <p>Name: <?php echo htmlspecialchars($player["name"] ?? ""); ?></p>
 
-                <p>University ID: <?php echo $player["uni_id"]; ?></p>
+                <p>University ID: <?php echo htmlspecialchars($player["uni_id"] ?? ""); ?></p>
 
-                <p>Joined: <?php echo $player["joined_date"] == null ? "-" : $player["joined_date"]; ?></p>
+                <p>Joined: <?php echo htmlspecialchars($player["joined_date"] == null ? "-" : $player["joined_date"]); ?></p>
 
-                <p>Status: <?php echo $player["status"]; ?></p>
+                <p>Status: <?php echo htmlspecialchars($player["status"] ?? ""); ?></p>
 
-                <p>Current Team Role: <?php echo $player["team_role"]; ?></p>
+                <p>Current Team Role: <?php echo htmlspecialchars($player["team_role"] ?? ""); ?></p>
 
 
                 <div class="button-area">
 
                     <form action="../Controls/teamControls.php" method="post">
 
-                        <input type="hidden" name="team_id" value="<?php echo $team["team_id"]; ?>">
+                        <input type="hidden" name="team_id" value="<?php echo htmlspecialchars($team["team_id"] ?? ""); ?>">
 
                         <input type="hidden" name="team_member_id"
-                               value="<?php echo $player["team_member_id"]; ?>">
+                               value="<?php echo htmlspecialchars($player["team_member_id"] ?? ""); ?>">
 
                         <select name="team_role">
 
@@ -230,10 +230,10 @@ if(!$team)
 
                     <form action="../Controls/teamControls.php" method="post">
 
-                        <input type="hidden" name="team_id" value="<?php echo $team["team_id"]; ?>">
+                        <input type="hidden" name="team_id" value="<?php echo htmlspecialchars($team["team_id"] ?? ""); ?>">
 
                         <input type="hidden" name="team_member_id"
-                               value="<?php echo $player["team_member_id"]; ?>">
+                               value="<?php echo htmlspecialchars($player["team_member_id"] ?? ""); ?>">
 
                         <button type="submit" name="removeMember" class="reject">Remove</button>
 

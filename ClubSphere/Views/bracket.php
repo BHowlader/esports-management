@@ -35,7 +35,7 @@ else
 
 <head>
 
-    <title>Bracket - <?php echo $tournament["title"]; ?></title>
+    <title>Bracket - <?php echo htmlspecialchars($tournament["title"] ?? ""); ?></title>
 
     <link rel="stylesheet" href="../Css/bracket.css">
 
@@ -49,20 +49,20 @@ else
 
         <div class="top-bar">
 
-            <a href="<?php echo $backTo; ?>" class="back-arrow">&lt;</a>
+            <a href="<?php echo htmlspecialchars($backTo); ?>" class="back-arrow">&lt;</a>
 
 
             <?php if($canManage) { ?>
 
             <form id="generateForm" action="../Controls/bracketControls.php" method="post"
-                  data-teams="<?php echo count($registeredTeams); ?>"
-                  data-exists="<?php echo $hasBracket ? "1" : "0"; ?>">
+                  data-teams="<?php echo htmlspecialchars(count($registeredTeams)); ?>"
+                  data-exists="<?php echo htmlspecialchars($hasBracket ? "1" : "0"); ?>">
 
                 <input type="hidden" name="tournament_id"
-                       value="<?php echo $tournament["tournament_id"]; ?>">
+                       value="<?php echo htmlspecialchars($tournament["tournament_id"] ?? ""); ?>">
 
                 <button type="submit" name="generateBracket" class="generate-button">
-                    <?php echo $hasBracket ? "Regenerate Bracket" : "Generate Bracket"; ?>
+                    <?php echo htmlspecialchars($hasBracket ? "Regenerate Bracket" : "Generate Bracket"); ?>
                 </button>
 
             </form>
@@ -72,7 +72,7 @@ else
         </div>
 
 
-        <h1 class="page-title"><?php echo $tournament["title"]; ?></h1>
+        <h1 class="page-title"><?php echo htmlspecialchars($tournament["title"] ?? ""); ?></h1>
 
 
         <?php if(isset($_GET["message"])) { ?>
@@ -84,9 +84,9 @@ else
 
         <div class="detail-panel">
 
-            <p class="meta">Game: <?php echo $tournament["game_title"]; ?></p>
+            <p class="meta">Game: <?php echo htmlspecialchars($tournament["game_title"] ?? ""); ?></p>
 
-            <p class="meta">Registered teams: <?php echo count($registeredTeams); ?></p>
+            <p class="meta">Registered teams: <?php echo htmlspecialchars(count($registeredTeams)); ?></p>
 
             <p class="meta">Format: single elimination knockout</p>
 
@@ -95,7 +95,7 @@ else
 
         <?php if($champion != "") { ?>
 
-            <div class="champion">Champion: <strong><?php echo $champion; ?></strong></div>
+            <div class="champion">Champion: <strong><?php echo htmlspecialchars($champion); ?></strong></div>
 
         <?php } ?>
 
@@ -136,7 +136,7 @@ else
 
             <div class="round">
 
-                <div class="round-title"><?php echo roundName($r, $totalRounds); ?></div>
+                <div class="round-title"><?php echo htmlspecialchars(roundName($r, $totalRounds)); ?></div>
 
                 <div class="round-body">
 
@@ -146,7 +146,7 @@ else
 
                         <div class="match-tag">
 
-                            Match <?php echo $match["slot_no"]; ?>
+                            Match <?php echo htmlspecialchars($match["slot_no"] ?? ""); ?>
 
                             <?php if($match["status"] == "Bye") echo " &middot; bye"; ?>
 
@@ -169,7 +169,7 @@ else
 
                             ?>">
 
-                            <?php echo $match["team1_name"] == null ? "TBD" : $match["team1_name"]; ?>
+                            <?php echo htmlspecialchars($match["team1_name"] == null ? "TBD" : $match["team1_name"]); ?>
 
                         </div>
 
@@ -196,7 +196,7 @@ else
                             }
                             else
                             {
-                                echo $match["team2_name"];
+                                echo htmlspecialchars($match["team2_name"]);
                             }
 
                             ?>
@@ -214,21 +214,21 @@ else
                         <form class="winner-form" action="../Controls/bracketControls.php" method="post">
 
                             <input type="hidden" name="tournament_id"
-                                   value="<?php echo $tournament["tournament_id"]; ?>">
+                                   value="<?php echo htmlspecialchars($tournament["tournament_id"] ?? ""); ?>">
 
                             <input type="hidden" name="match_id"
-                                   value="<?php echo $match["match_id"]; ?>">
+                                   value="<?php echo htmlspecialchars($match["match_id"] ?? ""); ?>">
 
                             <select name="winner_id">
 
                                 <option value="">winner...</option>
 
-                                <option value="<?php echo $match["team1_id"]; ?>">
-                                    <?php echo $match["team1_name"]; ?>
+                                <option value="<?php echo htmlspecialchars($match["team1_id"] ?? ""); ?>">
+                                    <?php echo htmlspecialchars($match["team1_name"] ?? ""); ?>
                                 </option>
 
-                                <option value="<?php echo $match["team2_id"]; ?>">
-                                    <?php echo $match["team2_name"]; ?>
+                                <option value="<?php echo htmlspecialchars($match["team2_id"] ?? ""); ?>">
+                                    <?php echo htmlspecialchars($match["team2_name"] ?? ""); ?>
                                 </option>
 
                             </select>

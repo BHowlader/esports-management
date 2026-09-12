@@ -19,7 +19,7 @@ if(!$tournament)
 
 <head>
 
-    <title><?php echo $tournament["title"]; ?></title>
+    <title><?php echo htmlspecialchars($tournament["title"] ?? ""); ?></title>
 
     <link rel="stylesheet" href="../Css/tournaments.css">
 
@@ -45,28 +45,28 @@ if(!$tournament)
 
         <div class="detail-panel">
 
-            <h2><?php echo $tournament["title"]; ?></h2>
+            <h2><?php echo htmlspecialchars($tournament["title"] ?? ""); ?></h2>
 
-            <p class="description"><?php echo $tournament["description"]; ?></p>
+            <p class="description"><?php echo htmlspecialchars($tournament["description"] ?? ""); ?></p>
 
-            <p class="meta">Game: <?php echo $tournament["game_title"]; ?></p>
+            <p class="meta">Game: <?php echo htmlspecialchars($tournament["game_title"] ?? ""); ?></p>
 
             <p class="meta">
-                <?php echo $tournament["start_date"]; ?> to <?php echo $tournament["end_date"]; ?>
+                <?php echo htmlspecialchars($tournament["start_date"] ?? ""); ?> to <?php echo htmlspecialchars($tournament["end_date"] ?? ""); ?>
             </p>
 
-            <p class="meta">Prize: <?php echo $tournament["prize"]; ?></p>
+            <p class="meta">Prize: <?php echo htmlspecialchars($tournament["prize"] ?? ""); ?></p>
 
-            <p class="meta">Organizer: <?php echo $tournament["organizer"]; ?></p>
+            <p class="meta">Organizer: <?php echo htmlspecialchars($tournament["organizer"] ?? ""); ?></p>
 
-            <p class="meta">Region: <?php echo $tournament["region"]; ?></p>
+            <p class="meta">Region: <?php echo htmlspecialchars($tournament["region"] ?? ""); ?></p>
 
-            <p class="meta">Status: <?php echo $tournament["status"]; ?></p>
+            <p class="meta">Status: <?php echo htmlspecialchars($tournament["status"] ?? ""); ?></p>
 
 
             <div class="rules">
                 <strong>Rules</strong><br>
-                <?php echo $tournament["rules"]; ?>
+                <?php echo htmlspecialchars($tournament["rules"] ?? ""); ?>
             </div>
 
 
@@ -85,8 +85,8 @@ if(!$tournament)
                 <?php } else if(count($myCaptainTeams) == 0) { ?>
 
                     <p class="note">
-                        You have no <?php echo $tournament["game_title"]; ?> team available to
-                        register. You must be the captain of a <?php echo $tournament["game_title"]; ?>
+                        You have no <?php echo htmlspecialchars($tournament["game_title"] ?? ""); ?> team available to
+                        register. You must be the captain of a <?php echo htmlspecialchars($tournament["game_title"] ?? ""); ?>
                         team that is not entered yet.
                     </p>
 
@@ -95,7 +95,7 @@ if(!$tournament)
                     <form action="../Controls/tournamentControls.php" method="post">
 
                         <input type="hidden" name="tournament_id"
-                               value="<?php echo $tournament["tournament_id"]; ?>">
+                               value="<?php echo htmlspecialchars($tournament["tournament_id"] ?? ""); ?>">
 
                         <label>Register one of your teams</label>
 
@@ -108,7 +108,7 @@ if(!$tournament)
                             foreach($myCaptainTeams as $myTeam)
                             {
                                 echo "<option value='" . $myTeam["team_id"] . "'>"
-                                   . $myTeam["team_name"] . "</option>";
+                                   . htmlspecialchars($myTeam["team_name"]) . "</option>";
                             }
 
                             ?>
@@ -140,8 +140,8 @@ if(!$tournament)
             {
                 foreach($registeredTeams as $regTeam)
                 {
-                    echo "<p class='meta'><strong>" . $regTeam["team_name"] . "</strong>"
-                       . " &middot; captain " . $regTeam["captain_name"]
+                    echo "<p class='meta'><strong>" . htmlspecialchars($regTeam["team_name"]) . "</strong>"
+                       . " &middot; captain " . htmlspecialchars($regTeam["captain_name"])
                        . " &middot; registered " . $regTeam["registered_at"] . "</p>";
                 }
             ?>
@@ -149,7 +149,7 @@ if(!$tournament)
                 <br>
 
                 <a class="details-button"
-                   href="bracket.php?tournament_id=<?php echo $tournament["tournament_id"]; ?>">View Bracket</a>
+                   href="bracket.php?tournament_id=<?php echo htmlspecialchars($tournament["tournament_id"] ?? ""); ?>">View Bracket</a>
 
             <?php
             }

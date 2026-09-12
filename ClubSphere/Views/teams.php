@@ -22,7 +22,7 @@ require_once "../Controls/teamControls.php";
 
     <div class="teams-container">
 
-        <a href="<?php echo $role == "Moderator" ? "moderatorDashboard.php" : "memberDashboard.php"; ?>"
+        <a href="<?php echo htmlspecialchars($role == "Moderator" ? "moderatorDashboard.php" : "memberDashboard.php"); ?>"
            class="back-button">Back</a>
 
         <img src="../Images/logo.png" class="logo">
@@ -72,17 +72,17 @@ require_once "../Controls/teamControls.php";
                 {
             ?>
 
-                <a class="team-tile" href="teamDetails.php?team_id=<?php echo $team["team_id"]; ?>">
+                <a class="team-tile" href="teamDetails.php?team_id=<?php echo htmlspecialchars($team["team_id"] ?? ""); ?>">
 
                     <div class="team-badge">
-                        <?php echo strtoupper(substr($team["team_name"], 0, 2)); ?>
+                        <?php echo htmlspecialchars(strtoupper(substr($team["team_name"], 0, 2))); ?>
                     </div>
 
-                    <p class="team-name"><?php echo $team["team_name"]; ?></p>
+                    <p class="team-name"><?php echo htmlspecialchars($team["team_name"] ?? ""); ?></p>
 
-                    <p class="team-game"><?php echo $team["game_name"]; ?></p>
+                    <p class="team-game"><?php echo htmlspecialchars($team["game_name"] ?? ""); ?></p>
 
-                    <p class="team-count"><?php echo $team["member_count"]; ?> players</p>
+                    <p class="team-count"><?php echo htmlspecialchars($team["member_count"] ?? ""); ?> players</p>
 
                 </a>
 
@@ -115,12 +115,12 @@ require_once "../Controls/teamControls.php";
 
             <div class="my-team-card">
 
-                <p><strong><?php echo $mine["team_name"]; ?></strong>
-                   &nbsp;&middot;&nbsp; <?php echo $mine["game_name"]; ?>
-                   &nbsp;&middot;&nbsp; My role: <?php echo $mine["team_role"]; ?>
-                   &nbsp;&middot;&nbsp; <?php echo $mine["member_count"]; ?> players</p>
+                <p><strong><?php echo htmlspecialchars($mine["team_name"] ?? ""); ?></strong>
+                   &nbsp;&middot;&nbsp; <?php echo htmlspecialchars($mine["game_name"] ?? ""); ?>
+                   &nbsp;&middot;&nbsp; My role: <?php echo htmlspecialchars($mine["team_role"] ?? ""); ?>
+                   &nbsp;&middot;&nbsp; <?php echo htmlspecialchars($mine["member_count"] ?? ""); ?> players</p>
 
-                <a href="teamDetails.php?team_id=<?php echo $mine["team_id"]; ?>"
+                <a href="teamDetails.php?team_id=<?php echo htmlspecialchars($mine["team_id"] ?? ""); ?>"
                    class="open-button">Open</a>
 
             </div>

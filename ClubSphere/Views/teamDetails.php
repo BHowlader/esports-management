@@ -29,7 +29,7 @@ if($team["captain_id"] == $u_id)
 
 <head>
 
-    <title><?php echo $team["team_name"]; ?></title>
+    <title><?php echo htmlspecialchars($team["team_name"] ?? ""); ?></title>
 
     <link rel="stylesheet" href="../Css/teamDetails.css">
 
@@ -44,10 +44,10 @@ if($team["captain_id"] == $u_id)
         <div class="team-title">
 
             <span class="team-badge">
-                <?php echo strtoupper(substr($team["team_name"], 0, 2)); ?>
+                <?php echo htmlspecialchars(strtoupper(substr($team["team_name"], 0, 2))); ?>
             </span>
 
-            <span><?php echo $team["team_name"]; ?></span>
+            <span><?php echo htmlspecialchars($team["team_name"] ?? ""); ?></span>
 
         </div>
 
@@ -90,16 +90,16 @@ if($team["captain_id"] == $u_id)
 
                             <div class="player-info">
 
-                                <p class="player-name"><?php echo $player["name"]; ?></p>
+                                <p class="player-name"><?php echo htmlspecialchars($player["name"] ?? ""); ?></p>
 
-                                <p class="player-meta"><?php echo $player["uni_id"]; ?></p>
+                                <p class="player-meta"><?php echo htmlspecialchars($player["uni_id"] ?? ""); ?></p>
 
                                 <p class="player-meta">
-                                    <?php echo $player["game_type"]; ?>
-                                    <?php echo $player["ranking"]; ?>
+                                    <?php echo htmlspecialchars($player["game_type"] ?? ""); ?>
+                                    <?php echo htmlspecialchars($player["ranking"] ?? ""); ?>
                                 </p>
 
-                                <span class="player-role"><?php echo $player["team_role"]; ?></span>
+                                <span class="player-role"><?php echo htmlspecialchars($player["team_role"] ?? ""); ?></span>
 
                                 <?php if($player["status"] == "Invited") { ?>
                                     <span class="player-pending">Invited</span>
@@ -136,7 +136,7 @@ if($team["captain_id"] == $u_id)
 
                 <form action="../Controls/teamControls.php" method="post">
 
-                    <input type="hidden" name="team_id" value="<?php echo $team["team_id"]; ?>">
+                    <input type="hidden" name="team_id" value="<?php echo htmlspecialchars($team["team_id"] ?? ""); ?>">
 
                     <select name="invite_id" size="6">
 
@@ -147,8 +147,8 @@ if($team["captain_id"] == $u_id)
                         while($person = mysqli_fetch_assoc($invitableUsers))
                         {
                             echo "<option value='" . $person["u_id"] . "'>"
-                               . $person["name"] . " (" . $person["uni_id"] . ") - "
-                               . $person["game_type"] . " " . $person["ranking"]
+                               . htmlspecialchars($person["name"] ?? "") . " (" . htmlspecialchars($person["uni_id"] ?? "") . ") - "
+                               . htmlspecialchars($person["game_type"] ?? "") . " " . htmlspecialchars($person["ranking"] ?? "")
                                . "</option>";
                         }
 
@@ -176,24 +176,24 @@ if($team["captain_id"] == $u_id)
             <div class="info-box">
 
                 <p class="info-label">CAPTAIN</p>
-                <p class="info-value"><?php echo $team["captain_name"]; ?></p>
+                <p class="info-value"><?php echo htmlspecialchars($team["captain_name"] ?? ""); ?></p>
 
                 <p class="info-label">GAME</p>
-                <p class="info-value"><?php echo $team["game_name"]; ?></p>
+                <p class="info-value"><?php echo htmlspecialchars($team["game_name"] ?? ""); ?></p>
 
                 <p class="info-label">CREATED</p>
-                <p class="info-value"><?php echo $team["created_date"]; ?></p>
+                <p class="info-value"><?php echo htmlspecialchars($team["created_date"] ?? ""); ?></p>
 
                 <p class="info-label">STATUS</p>
-                <p class="info-value"><?php echo $team["status"]; ?></p>
+                <p class="info-value"><?php echo htmlspecialchars($team["status"] ?? ""); ?></p>
 
                 <p class="info-label">PLAYERS</p>
-                <p class="info-value"><?php echo count($roster); ?></p>
+                <p class="info-value"><?php echo htmlspecialchars(count($roster)); ?></p>
 
                 <p class="info-label">ABOUT</p>
                 <p class="info-about">
                     <?php
-                        echo $team["description"] == "" ? "No description added." : $team["description"];
+                        echo htmlspecialchars($team["description"] == "" ? "No description added." : $team["description"]);
                     ?>
                 </p>
 

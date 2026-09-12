@@ -246,14 +246,17 @@ function generateBracket($tournament_id)
 
 /* put the winner of (round, slot) into the right half of the parent match */
 
-function placeTeamInNextRound($tournament_id, $round, $slot, $team_id, $totalRounds)
+function placeTeamInNextRound($tournament_id, $round, $slot, $team_id, $totalRounds, $conn = null)
 {
     if($round >= $totalRounds)
     {
         return true;        /* the final has no parent match */
     }
 
-    $conn = dbConnection();
+    if($conn == null)
+    {
+        $conn = dbConnection();
+    }
 
     $nextRound = $round + 1;
 

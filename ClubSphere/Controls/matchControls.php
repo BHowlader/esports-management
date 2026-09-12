@@ -5,6 +5,7 @@ ob_start();
 session_start();
 
 require_once "../Models/matchModel.php";
+require_once "../Models/tournamentModels.php";
 
 if(!isset($_SESSION["u_id"]) || ($_SESSION["role"] != "Moderator" && $_SESSION["role"] != "Admin"))
 {

@@ -42,7 +42,7 @@ else
 
         <div class="top-bar">
 
-            <a href="<?php echo $backTo; ?>" class="back-arrow">&lt;</a>
+            <a href="<?php echo htmlspecialchars($backTo); ?>" class="back-arrow">&lt;</a>
 
             <input type="text" id="searchBox" placeholder="Search events...">
 
@@ -68,13 +68,13 @@ else
         ?>
 
             <div class="tour-card"
-                 data-search="<?php echo $tour["title"] . " " . $tour["game_title"] . " " . $tour["status"]; ?>">
+                 data-search="<?php echo htmlspecialchars($tour["title"] . " " . $tour["game_title"] . " " . $tour["status"]); ?>">
 
                 <div class="tour-info">
 
-                    <h3><?php echo $tour["title"]; ?></h3>
+                    <h3><?php echo htmlspecialchars($tour["title"] ?? ""); ?></h3>
 
-                    <p class="meta">Game: <?php echo $tour["game_title"]; ?></p>
+                    <p class="meta">Game: <?php echo htmlspecialchars($tour["game_title"] ?? ""); ?></p>
 
                     <p class="meta">
 
@@ -93,7 +93,7 @@ else
 
                     </p>
 
-                    <p class="meta">Registered teams: <?php echo $tour["team_count"]; ?></p>
+                    <p class="meta">Registered teams: <?php echo htmlspecialchars($tour["team_count"] ?? ""); ?></p>
 
                 </div>
 
@@ -105,7 +105,7 @@ else
                 <?php } else { ?>
 
                     <a class="details-button"
-                       href="tournamentDetails.php?tournament_id=<?php echo $tour["tournament_id"]; ?>">Details</a>
+                       href="tournamentDetails.php?tournament_id=<?php echo htmlspecialchars($tour["tournament_id"] ?? ""); ?>">Details</a>
 
                 <?php } ?>
 

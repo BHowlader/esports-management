@@ -187,13 +187,13 @@ $dateErr = $_GET["dateErr"] ?? "";
 
             <div class="member-card">
 
-                <p>Title: <?php echo $tour["title"]; ?></p>
+                <p>Title: <?php echo htmlspecialchars($tour["title"] ?? ""); ?></p>
 
-                <p>Game: <?php echo $tour["game_title"]; ?></p>
+                <p>Game: <?php echo htmlspecialchars($tour["game_title"] ?? ""); ?></p>
 
-                <p>Dates: <?php echo $tour["start_date"]; ?> to <?php echo $tour["end_date"]; ?></p>
+                <p>Dates: <?php echo htmlspecialchars($tour["start_date"] ?? ""); ?> to <?php echo htmlspecialchars($tour["end_date"] ?? ""); ?></p>
 
-                <p>Registered Teams: <?php echo $tour["team_count"]; ?></p>
+                <p>Registered Teams: <?php echo htmlspecialchars($tour["team_count"] ?? ""); ?></p>
 
                 <p>Bracket:
                     <?php
@@ -208,7 +208,7 @@ $dateErr = $_GET["dateErr"] ?? "";
                     ?>
                 </p>
 
-                <p>Current Status: <?php echo $tour["status"]; ?></p>
+                <p>Current Status: <?php echo htmlspecialchars($tour["status"] ?? ""); ?></p>
 
 
                 <div class="button-area">
@@ -216,7 +216,7 @@ $dateErr = $_GET["dateErr"] ?? "";
                     <form action="../Controls/tournamentControls.php" method="post">
 
                         <input type="hidden" name="tournament_id"
-                               value="<?php echo $tour["tournament_id"]; ?>">
+                               value="<?php echo htmlspecialchars($tour["tournament_id"] ?? ""); ?>">
 
                         <select name="status">
 
@@ -246,7 +246,7 @@ $dateErr = $_GET["dateErr"] ?? "";
                     </form>
 
 
-                    <a href="bracket.php?tournament_id=<?php echo $tour["tournament_id"]; ?>"
+                    <a href="bracket.php?tournament_id=<?php echo htmlspecialchars($tour["tournament_id"] ?? ""); ?>"
                        class="edit-button">Open Bracket</a>
 
                 </div>

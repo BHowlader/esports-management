@@ -143,7 +143,7 @@ function getUserTeam($user_id)
     $sql = "SELECT t.team_id, t.team_name, t.game_name
             FROM team_member tm
             JOIN team t ON t.team_id = tm.team_id
-            WHERE tm.user_id = ? AND tm.status = 'Active'
+            WHERE tm.u_id = ? AND tm.status = 'Accepted'
             LIMIT 1";
 
     $stmt = mysqli_prepare($conn, $sql);

@@ -53,11 +53,11 @@ if($role != "Member")
 
             <div class="invite-card">
 
-                <p>Team: <?php echo $invite["team_name"]; ?></p>
+                <p>Team: <?php echo htmlspecialchars($invite["team_name"] ?? ""); ?></p>
 
-                <p>Game: <?php echo $invite["game_name"]; ?></p>
+                <p>Game: <?php echo htmlspecialchars($invite["game_name"] ?? ""); ?></p>
 
-                <p>Invited by: <?php echo $invite["captain_name"]; ?></p>
+                <p>Invited by: <?php echo htmlspecialchars($invite["captain_name"] ?? ""); ?></p>
 
 
                 <div class="button-area">
@@ -65,7 +65,7 @@ if($role != "Member")
                     <form action="../Controls/teamControls.php" method="post">
 
                         <input type="hidden" name="team_member_id"
-                               value="<?php echo $invite["team_member_id"]; ?>">
+                               value="<?php echo htmlspecialchars($invite["team_member_id"] ?? ""); ?>">
 
                         <input type="hidden" name="answer" value="accept">
 
@@ -77,7 +77,7 @@ if($role != "Member")
                     <form action="../Controls/teamControls.php" method="post">
 
                         <input type="hidden" name="team_member_id"
-                               value="<?php echo $invite["team_member_id"]; ?>">
+                               value="<?php echo htmlspecialchars($invite["team_member_id"] ?? ""); ?>">
 
                         <input type="hidden" name="answer" value="decline">
 
