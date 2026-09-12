@@ -37,9 +37,9 @@ require_once "../Controls/memberDashboardControls.php";
 
             <div class="menu">
 
-                <a href="#">Teams</a>
+                <a href="teams.php">Teams</a>
 
-                <a href="#">Tournaments</a>
+                <a href="tournaments.php">Tournaments</a>
 
                 <a href="#">Events</a>
 

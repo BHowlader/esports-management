@@ -119,6 +119,10 @@ if($_SERVER["REQUEST_METHOD"] == "POST")
     }
 }
 
+
+
+
+
 if($hasErr)
 {
     header("Location:../Views/register.php?name=" . urlencode($name)
@@ -134,12 +138,11 @@ if($hasErr)
     exit();
 }
 
-
-                              // Hash password
+                      // Hash password
     $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
 
 
-                              // Register user
+                              // Register user, insert in database
     $result = registerUser(
         $name,
         $uni_id,
@@ -148,7 +151,9 @@ if($hasErr)
     );
 
 
-                              // Registration result
+                                     
+    
+               // Registration result
     if($result)
         {
             header("Location: ../Views/login.php");
