@@ -1,9 +1,5 @@
 USE clubsphere;
 
-
--- ------------------------------------------------------------
--- TEAM                   FR6  (a Member creates a team)
--- ------------------------------------------------------------
 CREATE TABLE IF NOT EXISTS team (
     team_id      INT AUTO_INCREMENT PRIMARY KEY,
     team_name    VARCHAR(100) NOT NULL UNIQUE,
@@ -17,9 +13,6 @@ CREATE TABLE IF NOT EXISTS team (
 ) ENGINE = InnoDB;
 
 
--- ------------------------------------------------------------
--- TEAM_MEMBER      FR6 (invite)  /  FR7 (Moderator edits roster)
--- ------------------------------------------------------------
 CREATE TABLE IF NOT EXISTS team_member (
     team_member_id INT AUTO_INCREMENT PRIMARY KEY,
     team_id        INT NOT NULL,
@@ -33,9 +26,6 @@ CREATE TABLE IF NOT EXISTS team_member (
 ) ENGINE = InnoDB;
 
 
--- ------------------------------------------------------------
--- TOURNAMENT             FR8  (an Admin creates a tournament)
--- ------------------------------------------------------------
 CREATE TABLE IF NOT EXISTS tournament (
     tournament_id INT AUTO_INCREMENT PRIMARY KEY,
     title         VARCHAR(120) NOT NULL,
@@ -54,9 +44,6 @@ CREATE TABLE IF NOT EXISTS tournament (
 ) ENGINE = InnoDB;
 
 
--- ------------------------------------------------------------
--- TOURNAMENT_REGISTER    FR9  (a Member enters their own team)
--- ------------------------------------------------------------
 CREATE TABLE IF NOT EXISTS tournament_register (
     registration_id INT AUTO_INCREMENT PRIMARY KEY,
     tournament_id   INT NOT NULL,
@@ -69,12 +56,6 @@ CREATE TABLE IF NOT EXISTS tournament_register (
 ) ENGINE = InnoDB;
 
 
--- ------------------------------------------------------------
--- MATCHES (= MATCH)      FR10 (knockout bracket) + FR11 (scheduling)
---   round_no and slot_no are what make the bracket a tree: the
---   winner of slot n in round r moves into slot ceil(n/2) of round r+1.
---   venue, scheduled_by and the 'Cancelled' status are used by FR11.
--- ------------------------------------------------------------
 CREATE TABLE IF NOT EXISTS matches (
     match_id      INT AUTO_INCREMENT PRIMARY KEY,
     tournament_id INT NOT NULL,
@@ -99,11 +80,6 @@ CREATE TABLE IF NOT EXISTS matches (
 ) ENGINE = InnoDB;
 
 
--- ============================================================
---  SAMPLE DATA - built on the accounts from 01_users.sql, looked up
---  by name so it never depends on a particular u_id.
---  testmember plays for Asterisk so the match flow can be demoed.
--- ============================================================
 INSERT IGNORE INTO team (team_name, game_name, description, created_date, captain_id)
 SELECT 'Asterisk', 'Valorant', 'Asia-Pacific roster of the club.', '2026-01-10', u_id FROM users WHERE name = 'Nafisa';
 
