@@ -22,7 +22,7 @@ session_start();
         <a href="memberDashboard.php" class="back-button">Back</a>
 
         <p class="username">
-            Username: <?php echo $_SESSION["name"]; ?>
+            Username: <?php echo htmlspecialchars($_SESSION["name"]); ?>
         </p>
 
         <form action="../Controls/profileControls.php" method="post">
