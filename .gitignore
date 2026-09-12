@@ -1,0 +1,41 @@
+# =====================================================================
+# ClubSphere - files Git must never track
+# =====================================================================
+
+# --- macOS / Windows junk ------------------------------------------
+# Finder metadata. It changes constantly and causes merge conflicts on
+# a file nobody wrote. The faculty's own sample repo has these
+# committed by accident - we are not repeating that.
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# --- editor settings ------------------------------------------------
+.vscode/
+.idea/
+*.swp
+*~
+
+# --- user uploads ---------------------------------------------------
+# Match screenshots members upload at runtime (FR12) are DATA, not
+# source code. Committed, every clone would fill with each other's test
+# images and every pull would conflict. The folder itself is kept so
+# the path exists on a fresh clone.
+ClubSphere/Uploads/results/*
+!ClubSphere/Uploads/results/.gitkeep
+!ClubSphere/Uploads/results/.htaccess
+
+# --- secrets / local config -----------------------------------------
+config.local.php
+.env
+
+# --- database dumps --------------------------------------------------
+# Schema lives in ClubSphere/Sql/*.sql, which IS committed.
+# Full phpMyAdmin exports are huge and change on every export.
+*.sql.gz
+backup/
+dump_*.sql
+
+# --- logs ------------------------------------------------------------
+*.log
+error_log
