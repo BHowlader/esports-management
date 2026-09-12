@@ -2,26 +2,15 @@
 
 session_start();
 
-
-
 require_once "../Models/userModels.php";
 
-
-
-
 if($_SERVER["REQUEST_METHOD"] == "POST")
-
-
-
 {
     if(!isset($_SESSION["u_id"]))
     {
         echo "Please login first!";
         exit();
     }
-
-
-
 
     $u_id = $_SESSION["u_id"];
 
@@ -36,9 +25,6 @@ if($_SERVER["REQUEST_METHOD"] == "POST")
         $social_link
     );
 
-
-
-
     if($result)
     {
         header("Location: ../Views/memberDashboard.php");
@@ -48,9 +34,6 @@ if($_SERVER["REQUEST_METHOD"] == "POST")
     {
         echo "Profile Update Failed!";
     }
-
-
-    
 }
 
 ?>

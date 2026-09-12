@@ -109,10 +109,6 @@ require_once "../Controls/adminControls.php";
             </div>
 
 
-
-
-
-
                         <!-- UPCOMING EVENTS -->
 
             <div class="events-card">
@@ -125,10 +121,6 @@ require_once "../Controls/adminControls.php";
 
                       <div class="events-message">There is no upcoming event currently
                     </div>
-
-
-
-
 
                 </div>
                 <div class="registration-card">
@@ -150,13 +142,7 @@ require_once "../Controls/adminControls.php";
 
     </div>
 
-
-
-
-
     <script>
-
-
 
 function loadRegistrationData()
 {
@@ -167,8 +153,6 @@ function loadRegistrationData()
         "../Controls/registrationGraph.php",
         true
     );
-
-    
 
     ajax.onload = function()
     {

@@ -1,7 +1,5 @@
 <?php
 
-
-
 $name = $_GET["name"] ?? "";
 $email_id = $_GET["email_id"] ?? "";
 $uni_id = $_GET["uni_id"] ?? "";
@@ -12,11 +10,6 @@ $uni_idErr = $_GET["uni_idErr"] ?? "";
 $passwordErr = $_GET["passwordErr"] ?? "";
 $confirmPasswordErr = $_GET["confirmPasswordErr"] ?? "";
 $termsErr = $_GET["termsErr"] ?? "";
-
-
-
-
-
 
 ?>
 <!DOCTYPE html>
@@ -39,20 +32,16 @@ $termsErr = $_GET["termsErr"] ?? "";
 
         <h1>Register</h1>
 
-
-
-
-
         <form action="../Controls/registerControls.php" method="post">
 
             <div class="form-group">
 
                 <label>Username</label>
 
-                    <input type="text" name="name" placeholder="Enter your username" value="<?php echo htmlspecialchars($name); ?>">
+                <input type="text" name="name" placeholder="Enter your username" value="<?php echo htmlspecialchars($name); ?>">
 
                 <span class="error"><?php echo $nameErr; ?>
-                    </span>
+                </span>
 
             </div>
 
@@ -64,14 +53,10 @@ $termsErr = $_GET["termsErr"] ?? "";
                 <input type="password" name="password" placeholder="Enter your password">
                 
 
-                  <span class="error"><?php echo $passwordErr; ?>
+                <span class="error"><?php echo $passwordErr; ?>
                 </span>
 
             </div>
-
-
-
-
 
 
             <div class="form-group">
@@ -93,11 +78,9 @@ $termsErr = $_GET["termsErr"] ?? "";
 
                 <input type="email" name="email_id" placeholder="Enter your email" value="<?php echo htmlspecialchars($email_id); ?>">
 
-
-
-                                      <span class="error">
-                                             <?php echo $emailErr; ?>
-                                      </span>
+                <span class="error">
+                    <?php echo $emailErr; ?>
+                </span>
 
             </div>
 
@@ -106,10 +89,7 @@ $termsErr = $_GET["termsErr"] ?? "";
 
                 <label>University ID</label>
 
-
-
-
-                        <input type="text" name="uni_id" placeholder="Enter your university ID" value="<?php echo htmlspecialchars($uni_id); ?>">
+                <input type="text" name="uni_id" placeholder="Enter your university ID" value="<?php echo htmlspecialchars($uni_id); ?>">
 
                 <span class="error">
                     <?php echo $uni_idErr; ?>
@@ -129,16 +109,9 @@ $termsErr = $_GET["termsErr"] ?? "";
 
             </div>
 
-
-
-
-
             <span class="error terms-error">
                 <?php echo $termsErr; ?>
             </span>
-
-
-
 
 
             <button type="submit" name="submit">Register</button>
@@ -148,7 +121,7 @@ $termsErr = $_GET["termsErr"] ?? "";
     </div>
 
 
-        <div class="footer">ClubSphere</div>
+    <div class="footer">ClubSphere</div>
 
 </body>
 

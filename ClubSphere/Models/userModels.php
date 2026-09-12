@@ -1,19 +1,8 @@
 <?php
-
-
-
-
 require_once "dbConnect.php";
-
-
-
 function registerUser($name,$uni_id, $email_id, $password)
 {
     $conn=dbConnection();
-
-
-
-
 
     if($conn){
         $sql="INSERT INTO users (name, uni_id, email_id, password) Values (?,?,?,?)";
@@ -30,10 +19,6 @@ function registerUser($name,$uni_id, $email_id, $password)
             $password
         );
 
-
-
-
-
         if(mysqli_stmt_execute($stmt))
         {
             return true;
@@ -47,14 +32,8 @@ function registerUser($name,$uni_id, $email_id, $password)
     else{
         return false;
     }
-
-
-
-
 }
                          //check if existing
-
-
 
 function checkUserExists($name, $email_id, $uni_id)
 {
@@ -74,19 +53,12 @@ function checkUserExists($name, $email_id, $uni_id)
         $uni_id
     );
 
-
-
-
     mysqli_stmt_execute($stmt);
 
     $result = mysqli_stmt_get_result($stmt);
 
     return $result;
 }
-
-
-
-
 
 function loginUser($name)
 {
@@ -104,23 +76,12 @@ function loginUser($name)
         $name
     );
 
-
-
-
-
-
     mysqli_stmt_execute($stmt);
 
     $result = mysqli_stmt_get_result($stmt);
 
     return $result;
 }
-
-
-
-
-//from profiles
-
 function updateProfile($u_id, $game_type, $ranking, $social_link)
 {
     $conn = dbConnection();
@@ -229,13 +190,6 @@ function getApprovedUsers()
     return $result;
 }
 
-
-
-
-
-
-
-
 function getUserProfile($u_id)
 {
     $conn = dbConnection();
@@ -259,12 +213,6 @@ function getUserProfile($u_id)
     return mysqli_fetch_assoc($result);
 }
 
-
-
-
-
-
-
 function getTotalApprovedMembers()
 {
     $conn = dbConnection();
@@ -279,10 +227,7 @@ function getTotalApprovedMembers()
 
     return $row["total"];
 }
-            
-
-
-
+              
             /*AJAX*/
 
             
