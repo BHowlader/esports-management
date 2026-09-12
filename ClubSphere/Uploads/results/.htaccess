@@ -1,0 +1,17 @@
+# =====================================================================
+# Nothing in this folder may ever be executed as a program.
+#
+# This folder holds files uploaded by users (FR12 match screenshots).
+# Controls/resultControls.php already refuses anything that is not a
+# real JPG / PNG / WEBP and renames every file, but this is the second
+# lock on the same door: even if a .php file somehow landed here,
+# Apache would serve it as plain text instead of running it.
+#
+# Defence in depth - never rely on a single check for file uploads.
+# =====================================================================
+
+php_flag engine off
+
+<FilesMatch "\.(php|php3|php4|php5|php7|phtml|pl|py|cgi|asp|aspx|sh|htaccess)$">
+    Require all denied
+</FilesMatch>
