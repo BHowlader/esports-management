@@ -88,11 +88,11 @@ require_once "../Controls/verifyControls.php";
 
                         <?php if(!empty($result["screenshot"])) { ?>
 
-                            <a href="../<?php echo htmlspecialchars($result["screenshot"]); ?>"
+                            <a href="../<?php echo htmlspecialchars($result["screenshot"] ?? ""); ?>"
                                target="_blank">
 
                                 <img class="shot"
-                                     src="../<?php echo htmlspecialchars($result["screenshot"]); ?>"
+                                     src="../<?php echo htmlspecialchars($result["screenshot"] ?? ""); ?>"
                                      alt="Screenshot submitted as proof">
 
                             </a>
@@ -200,15 +200,15 @@ require_once "../Controls/verifyControls.php";
                         }
                         else
                         {
-                            echo htmlspecialchars($history["winner_name"]);
+                            echo htmlspecialchars($history["winner_name"] ?? "");
                         }
 
                         ?>
                     </td>
 
-                    <td><?php echo htmlspecialchars($history["verified_by_name"]); ?></td>
+                    <td><?php echo htmlspecialchars($history["verified_by_name"] ?? ""); ?></td>
 
-                    <td><?php echo htmlspecialchars($history["remarks"]); ?></td>
+                    <td><?php echo htmlspecialchars($history["remarks"] ?? ""); ?></td>
 
                 </tr>
 

@@ -143,7 +143,7 @@ $upcoming = getUpcomingMatches(6);
                                 <?php echo date("d M Y, g:i A", strtotime($match["match_time"])); ?>
 
                                 <?php if(!empty($match["venue"])) { ?>
-                                    <br><?php echo htmlspecialchars($match["venue"]); ?>
+                                    <br><?php echo htmlspecialchars($match["venue"] ?? ""); ?>
                                 <?php } ?>
 
                             </div>

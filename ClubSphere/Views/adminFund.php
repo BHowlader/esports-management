@@ -205,12 +205,12 @@ require_once "../Controls/fundControls.php";
                         <?php echo htmlspecialchars($record["source_name"]); ?>
 
                         <?php if(!empty($record["sponsor_name"])) { ?>
-                            <div class="hint">sponsor: <?php echo htmlspecialchars($record["sponsor_name"]); ?></div>
+                            <div class="hint">sponsor: <?php echo htmlspecialchars($record["sponsor_name"] ?? ""); ?></div>
                         <?php } ?>
 
                     </td>
 
-                    <td><?php echo htmlspecialchars($record["category"]); ?></td>
+                    <td><?php echo htmlspecialchars($record["category"] ?? ""); ?></td>
 
                     <td class="num"><?php echo number_format($record["amount"], 2); ?></td>
 

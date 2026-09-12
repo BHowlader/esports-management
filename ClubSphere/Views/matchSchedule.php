@@ -96,7 +96,7 @@ require_once "../Controls/matchControls.php";
 
 
                 <?php if(!empty($match["winner_name"])) { ?>
-                    <p class="sub">Winner: <?php echo htmlspecialchars($match["winner_name"]); ?></p>
+                    <p class="sub">Winner: <?php echo htmlspecialchars($match["winner_name"] ?? ""); ?></p>
                 <?php } ?>
 
 
@@ -114,7 +114,7 @@ require_once "../Controls/matchControls.php";
 
                         if(!empty($match["venue"]))
                         {
-                            echo " &nbsp;&middot;&nbsp; " . htmlspecialchars($match["venue"]);
+                            echo " &nbsp;&middot;&nbsp; " . htmlspecialchars($match["venue"] ?? "");
                         }
                     }
 
@@ -147,7 +147,7 @@ require_once "../Controls/matchControls.php";
                                ?>">
 
                         <input type="text" name="venue" maxlength="100" placeholder="Venue"
-                               value="<?php echo htmlspecialchars($match["venue"]); ?>">
+                               value="<?php echo htmlspecialchars($match["venue"] ?? ""); ?>">
 
                         <button type="submit" class="primary">
                             <?php
