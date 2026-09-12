@@ -4,9 +4,9 @@ require_once "../Models/userModels.php";
 
 if($_SERVER["REQUEST_METHOD"] == "POST")
 {
-    $name = $_POST["name"];
-    $email_id = $_POST["email_id"];
-    $uni_id = $_POST["uni_id"];
+    $name = trim($_POST["name"]);
+    $email_id = trim($_POST["email_id"]);
+    $uni_id = trim($_POST["uni_id"]);
     $password = $_POST["password"];
     $confirmPassword = $_POST["confirmPassword"];
 
