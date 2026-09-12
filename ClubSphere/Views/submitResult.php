@@ -1,11 +1,5 @@
 <?php
 
-/* =====================================================================
-   FR12 - Members or Moderators shall be able to upload match results
-          and supporting screenshots.
-   Bibek Howlader (23-54606-3)
-   ===================================================================== */
-
 require_once "../Controls/resultControls.php";
 
 ?>

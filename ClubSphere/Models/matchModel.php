@@ -1,13 +1,4 @@
 <?php
-/* =====================================================================
-   FR11 - Moderators shall be able to set and modify match times
-          within a tournament.
-   Owner: Bibek Howlader (23-54606-3)
-
-   Follows the same pattern as Models/userModels.php - list functions
-   return the mysqli_result and the view loops over it with
-   mysqli_fetch_assoc, action functions return true or an error string.
-   ===================================================================== */
 
 require_once "dbConnect.php";
 
@@ -82,13 +73,6 @@ function getMatchById($match_id)
     }
 }
 
-
-/* ---------------------------------------------------------------------
-   A team cannot play two matches within two hours of each other.
-   Returns the name of the clashing team, or null if the slot is free.
-   $ignore_match_id lets a moderator re-save the same match without it
-   clashing with itself.
-   ------------------------------------------------------------------- */
 function findScheduleClash($tournament_id, $team1_id, $team2_id, $match_time, $ignore_match_id)
 {
     $conn = dbConnection();
@@ -131,7 +115,6 @@ function findScheduleClash($tournament_id, $team1_id, $team2_id, $match_time, $i
         return null;
     }
 
-    /* work out WHICH team is double booked, for a useful error message */
     if($row["team1_id"] == $team1_id || $row["team2_id"] == $team1_id)
     {
         if($row["team1_id"] == $team1_id)
@@ -154,13 +137,6 @@ function findScheduleClash($tournament_id, $team1_id, $team2_id, $match_time, $i
     }
 }
 
-
-/* ---------------------------------------------------------------------
-   FR11 core - set or modify the time of an existing match.
-   A completed match is locked: once a result is verified the schedule
-   is part of the record and must not be rewritten.
-   Returns true, or an error message for the view to show.
-   ------------------------------------------------------------------- */
 function setMatchTime($match_id, $match_time, $venue, $moderator_id)
 {
     $match = getMatchById($match_id);
@@ -236,8 +212,6 @@ function cancelMatch($match_id)
     }
 }
 
-
-/* Matches a member may report on: scheduled, and their own team is in it. */
 function getSubmittableMatchesForUser($user_id)
 {
     $conn = dbConnection();
@@ -268,9 +242,6 @@ function getSubmittableMatchesForUser($user_id)
     return mysqli_stmt_get_result($stmt);
 }
 
-
-/* FR12 says "Members OR Moderators", so a moderator gets every
-   scheduled match rather than only their own team's. */
 function getAllScheduledMatches()
 {
     $conn = dbConnection();
@@ -291,8 +262,6 @@ function getAllScheduledMatches()
     return mysqli_query($conn, $sql);
 }
 
-
-/* Small counters for the moderator dashboard cards. */
 function countMatchesByStatus($status)
 {
     $conn = dbConnection();
@@ -310,8 +279,6 @@ function countMatchesByStatus($status)
     return $row["total"];
 }
 
-
-/* The next few fixtures, for the "Upcoming Matches" panel. */
 function getUpcomingMatches($limit)
 {
     $conn = dbConnection();

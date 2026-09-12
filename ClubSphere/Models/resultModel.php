@@ -1,22 +1,8 @@
 <?php
-/* =====================================================================
-   FR12 - Members or Moderators shall be able to upload match results
-          and supporting screenshots.
-   FR13 - Moderators shall have the ability to verify and finalize
-          submitted match results.
-   Owner: Bibek Howlader (23-54606-3)
-   ===================================================================== */
 
 require_once "dbConnect.php";
 require_once "leaderboardModel.php";
 
-
-/* ---------------------------------------------------------------------
-   Is this user allowed to report this match?
-   A member must be an active player of one of the two teams.
-   A moderator or admin may report any match - FR12 says "Members OR
-   Moderators".
-   ------------------------------------------------------------------- */
 function canSubmitForMatch($match_id, $user_id, $role)
 {
     if($role == "Moderator" || $role == "Admin")
@@ -52,15 +38,10 @@ function canSubmitForMatch($match_id, $user_id, $role)
     }
 }
 
-
-/* ---------------------------------------------------------------------
-   FR12 core. Returns true, or an error message for the view.
-   ------------------------------------------------------------------- */
 function submitResult($match_id, $user_id, $score_team1, $score_team2, $screenshot)
 {
     $conn = dbConnection();
 
-    /* the match must exist and be scheduled */
     $stmt = mysqli_prepare($conn, "SELECT status FROM matches WHERE match_id = ?");
 
     mysqli_stmt_bind_param($stmt, "i", $match_id);
@@ -84,7 +65,6 @@ function submitResult($match_id, $user_id, $score_team1, $score_team2, $screensh
         return "A result can only be submitted after the match has been scheduled.";
     }
 
-    /* stop duplicate reports - one open submission per match at a time */
     $sql = "SELECT COUNT(*) AS total FROM match_result
             WHERE match_id = ? AND verification_status IN ('Pending','Verified')";
 
@@ -127,8 +107,6 @@ function submitResult($match_id, $user_id, $score_team1, $score_team2, $screensh
     }
 }
 
-
-/* Everything a moderator needs to review, oldest submission first. */
 function getPendingResults()
 {
     $conn = dbConnection();
@@ -196,32 +174,12 @@ function getResultHistory($limit)
     return mysqli_stmt_get_result($stmt);
 }
 
-
-/* ---------------------------------------------------------------------
-   FR13 core - verify and finalize.
-
-   This is the one place in my module where FOUR things must all happen
-   or none of them:
-        1. the submission is stamped Verified
-        2. any other open submission for that match is superseded
-        3. the match gets its winner and becomes Completed
-        4. the leaderboard is rebuilt (FR14)
-
-   If the script died between 3 and 4 the match would say "Phoenix won"
-   while the leaderboard still showed 0 wins, and nobody would notice
-   until the defense. So the whole thing runs inside one InnoDB
-   transaction: begin, then commit only if every step succeeded,
-   otherwise rollback and the database is untouched.
-   ------------------------------------------------------------------- */
 function verifyResult($result_id, $moderator_id, $remarks)
 {
     $conn = dbConnection();
 
     mysqli_begin_transaction($conn);
 
-    /* read the submission and its match, locking the rows so a second
-       moderator clicking Verify at the same moment waits instead of
-       doing the same work twice */
     $sql = "SELECT r.result_id, r.match_id, r.score_team1, r.score_team2,
                    r.verification_status,
                    m.team1_id, m.team2_id, m.tournament_id, m.status AS match_status
@@ -256,7 +214,6 @@ function verifyResult($result_id, $moderator_id, $remarks)
         return "This match has already been finalized.";
     }
 
-    /* 1. stamp the submission */
     $sql = "UPDATE match_result
             SET verification_status = 'Verified',
                 verified_by = ?, verified_at = NOW(), remarks = ?
@@ -272,7 +229,6 @@ function verifyResult($result_id, $moderator_id, $remarks)
         return "Could not update the submission.";
     }
 
-    /* 2. supersede any other open submission for the same match */
     $sql = "UPDATE match_result
             SET verification_status = 'Rejected',
                 verified_by = ?, verified_at = NOW(),
@@ -285,8 +241,6 @@ function verifyResult($result_id, $moderator_id, $remarks)
 
     mysqli_stmt_execute($stmt);
 
-    /* 3. work out the winner and finalize the match.
-          Equal scores means a draw, so winner_id stays NULL. */
     $winner_id = null;
 
     if($row["score_team1"] > $row["score_team2"])
@@ -310,7 +264,6 @@ function verifyResult($result_id, $moderator_id, $remarks)
         return "Could not finalize the match.";
     }
 
-    /* 4. FR14 - rebuild the standings inside the SAME transaction */
     if(!recomputeLeaderboard($row["tournament_id"], $conn))
     {
         mysqli_rollback($conn);
@@ -322,9 +275,6 @@ function verifyResult($result_id, $moderator_id, $remarks)
     return true;
 }
 
-
-/* Rejecting changes one row, so it needs no transaction.
-   The team can then submit a corrected result. */
 function rejectResult($result_id, $moderator_id, $remarks)
 {
     $conn = dbConnection();

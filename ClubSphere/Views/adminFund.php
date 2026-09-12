@@ -1,11 +1,5 @@
 <?php
 
-/* =====================================================================
-   FR15 - Admins shall be able to record income from sponsorships,
-          donations and entry fees.
-   Bibek Howlader (23-54606-3)
-   ===================================================================== */
-
 require_once "../Controls/fundControls.php";
 
 ?>
@@ -46,9 +40,6 @@ require_once "../Controls/fundControls.php";
             <div class="msg err"><?php echo htmlspecialchars($_GET["errMsg"]); ?></div>
         <?php } ?>
 
-
-                           <!-- SUMMARY CARDS -->
-
         <div class="summary">
 
             <div class="stat">
@@ -67,9 +58,6 @@ require_once "../Controls/fundControls.php";
             <?php } ?>
 
         </div>
-
-
-                         <!-- RECORD NEW INCOME -->
 
         <h2>Record New Income</h2>
 
@@ -160,9 +148,6 @@ require_once "../Controls/fundControls.php";
             </div>
 
         </form>
-
-
-                            <!-- INCOME LEDGER -->
 
         <h2>Income Ledger</h2>
 

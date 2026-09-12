@@ -1,12 +1,5 @@
 <?php
 
-/* =====================================================================
-   FR13 - Moderators shall have the ability to verify and finalize
-          submitted match results.
-          Verifying also fires FR14 inside the same transaction.
-   Bibek Howlader (23-54606-3)
-   ===================================================================== */
-
 require_once "../Controls/verifyControls.php";
 
 ?>
@@ -47,9 +40,6 @@ require_once "../Controls/verifyControls.php";
         <?php if(isset($_GET["errMsg"])) { ?>
             <div class="msg err"><?php echo htmlspecialchars($_GET["errMsg"]); ?></div>
         <?php } ?>
-
-
-                       <!-- WAITING FOR VERIFICATION -->
 
         <h2>Waiting For Verification (<?php echo mysqli_num_rows($pendingResults); ?>)</h2>
 
@@ -154,9 +144,6 @@ require_once "../Controls/verifyControls.php";
         }
 
         ?>
-
-
-                          <!-- RECENTLY DECIDED -->
 
         <h2>Recently Decided</h2>
 

@@ -1,48 +1,7 @@
--- =====================================================================
--- ClubSphere  |  FR11 - FR15
--- Bibek Howlader (23-54606-3)
---
---   FR11  Moderators shall be able to set and modify match times
---         within a tournament.
---   FR12  Members or Moderators shall be able to upload match results
---         and supporting screenshots.
---   FR13  Moderators shall have the ability to verify and finalize
---         submitted match results.
---   FR14  The system shall automatically update rankings and
---         leaderboards based on match outcomes.
---   FR15  Admins shall be able to record income from sponsorships,
---         donations and entry fees.
---
--- HOW TO IMPORT (phpMyAdmin)
---   1. open http://localhost/phpmyadmin
---   2. select the existing  clubsphere  database in the left sidebar
---   3. Import tab -> Choose File -> this file -> Import
---
--- This file NEVER creates or alters the `users` table. That table
--- belongs to the FR1-FR5 module and already exists.
--- =====================================================================
-
 USE clubsphere;
 
--- Foreign keys only work between InnoDB tables. If `users` was created
--- as MyISAM, every CREATE TABLE below would fail with errno 150.
--- This line is harmless if it is already InnoDB.
 ALTER TABLE users ENGINE = InnoDB;
 
-
--- ---------------------------------------------------------------------
--- STUB TABLES - team / tournament
---
--- These belong to the FR6-FR10 module, which is not merged yet. My
--- five requirements cannot be demonstrated without somewhere for teams
--- and tournaments to live, so I create the minimum here with
--- CREATE TABLE IF NOT EXISTS.
---
--- When the FR6-FR10 branch lands, that member owns these tables and
--- extends them. Because of IF NOT EXISTS, importing their file after
--- mine will not wipe anything. Delete this whole block once their
--- module is merged and re-import.
--- ---------------------------------------------------------------------
 CREATE TABLE IF NOT EXISTS team (
     team_id      INT AUTO_INCREMENT PRIMARY KEY,
     team_name    VARCHAR(100) NOT NULL UNIQUE,
@@ -90,25 +49,6 @@ CREATE TABLE IF NOT EXISTS tournament_register (
     CONSTRAINT uq_tour_team  UNIQUE (tournament_id, team_id)
 ) ENGINE = InnoDB;
 
-
--- =====================================================================
--- MY TABLES START HERE
--- =====================================================================
-
--- ---------------------------------------------------------------------
--- FR11 : matches
---
--- The SRS calls this entity MATCH, but MATCH is a reserved word in
--- MySQL (MATCH ... AGAINST full-text search). Naming the table
--- `matches` means no query ever needs backticks. Deliberate, documented
--- deviation from the SRS.
---
--- status lifecycle:
---   Pending    created, no time set yet
---   Scheduled  FR11 - a moderator has set match_time
---   Completed  FR13 - a moderator verified the result
---   Cancelled  called off
--- ---------------------------------------------------------------------
 CREATE TABLE IF NOT EXISTS matches (
     match_id      INT AUTO_INCREMENT PRIMARY KEY,
     tournament_id INT NOT NULL,
@@ -137,16 +77,6 @@ CREATE TABLE IF NOT EXISTS matches (
 CREATE INDEX idx_match_tournament ON matches (tournament_id, status);
 CREATE INDEX idx_match_time       ON matches (match_time);
 
-
--- ---------------------------------------------------------------------
--- FR12 + FR13 : match_result
---
--- One row per submission. A rejected submission is KEPT, not deleted -
--- that is the audit trail - and the team submits again. So a match may
--- have several rows but at most one 'Verified'. That rule is enforced
--- in PHP (resultModel.php) because MySQL cannot express a partial
--- unique index.
--- ---------------------------------------------------------------------
 CREATE TABLE IF NOT EXISTS match_result (
     result_id           INT AUTO_INCREMENT PRIMARY KEY,
     match_id            INT NOT NULL,
@@ -169,17 +99,6 @@ CREATE TABLE IF NOT EXISTS match_result (
 
 CREATE INDEX idx_result_status ON match_result (verification_status);
 
-
--- ---------------------------------------------------------------------
--- FR14 : team_rating  (the leaderboard)
---
--- One row per (tournament, team). Written ONLY by the verification step
--- in FR13, never edited by hand, so every number on the leaderboard can
--- be traced back to a verified match result.
---
--- Points: win = 3, draw = 1, loss = 0.
--- Club-wide standings = SUM(...) GROUP BY team_id across all rows.
--- ---------------------------------------------------------------------
 CREATE TABLE IF NOT EXISTS team_rating (
     rating_id      INT AUTO_INCREMENT PRIMARY KEY,
     tournament_id  INT NOT NULL,
@@ -201,22 +120,6 @@ CREATE TABLE IF NOT EXISTS team_rating (
     CONSTRAINT uq_rating_tour_team UNIQUE (tournament_id, team_id)
 ) ENGINE = InnoDB;
 
-
--- ---------------------------------------------------------------------
--- FR15 : sponsor / transaction / income
---
--- The SRS normalises finance to 3NF (proposal page 5): a generic
--- TRANSACTION row holds what every money movement has in common, and
--- INCOME holds only what is specific to money coming in.
---
--- FR16 (expenses) writes to the SAME transaction table with
--- transaction_type = 'Expense' plus its own `expense` table. Neither of
--- us touches the other's file.
---
--- `sponsor` is created here because income has a foreign key to it. The
--- member who owns FR25 builds the sponsor directory screens on top of
--- this table - they do not need to re-create it.
--- ---------------------------------------------------------------------
 CREATE TABLE IF NOT EXISTS sponsor (
     sponsor_id         INT AUTO_INCREMENT PRIMARY KEY,
     sponsor_name       VARCHAR(120)  NOT NULL,
@@ -257,27 +160,17 @@ CREATE TABLE IF NOT EXISTS income (
     CONSTRAINT uq_income_txn UNIQUE (transaction_id)
 ) ENGINE = InnoDB;
 
-
--- =====================================================================
--- DEMO DATA
---
--- Written so it works with whatever users are already in the database -
--- it never inserts a user and never assumes a particular u_id.
--- =====================================================================
-
 INSERT IGNORE INTO team (team_name, game_name, created_date) VALUES
  ('Phoenix Rising','Valorant', CURDATE()),
  ('Night Owls',    'Valorant', CURDATE()),
  ('Iron Wolves',   'Valorant', CURDATE()),
  ('Blue Comets',   'Valorant', CURDATE());
 
--- spread every approved user across the four teams
 INSERT IGNORE INTO team_member (team_id, user_id, team_role, joined_date)
 SELECT (u_id % 4) + 1, u_id, 'Player', CURDATE()
 FROM users
 WHERE status = 'Approved';
 
--- the lowest-numbered member of each team becomes its captain
 UPDATE team t
 SET captain_id = (
     SELECT MIN(tm.user_id) FROM team_member tm WHERE tm.team_id = t.team_id

@@ -1,8 +1,3 @@
-/* =====================================================================
-   FR15 - helpers for the income form
-   Bibek Howlader (23-54606-3)
-   ===================================================================== */
-
 document.addEventListener("DOMContentLoaded", function () {
 
     var typeSelect = document.getElementById("source_type");
@@ -12,10 +7,6 @@ document.addEventListener("DOMContentLoaded", function () {
     var amount = document.getElementById("amount");
     var form = document.getElementById("incomeForm");
 
-
-    /* the sponsor dropdown only makes sense for a sponsorship, so it is
-       shown and required only then - the same rule is enforced again in
-       Models/fundModel.php */
     function syncSponsorField() {
 
         var isSponsorship = (typeSelect.value === "Sponsorship");
@@ -36,8 +27,6 @@ document.addEventListener("DOMContentLoaded", function () {
         syncSponsorField();
     }
 
-
-    /* copy the sponsor's name into the source name box if it is empty */
     if (sponsorInput) {
 
         sponsorInput.addEventListener("change", function () {
@@ -48,8 +37,6 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 
-
-    /* flag an amount that looks like a typo, without blocking it */
     if (amount) {
 
         amount.addEventListener("blur", function () {
@@ -88,8 +75,6 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 
-
-    /* deleting a ledger entry changes the club's recorded total */
     document.querySelectorAll(".delete-form").forEach(function (deleteForm) {
 
         deleteForm.addEventListener("submit", function (event) {

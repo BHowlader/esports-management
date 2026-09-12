@@ -1,18 +1,5 @@
 <?php
 
-/* =====================================================================
-   Moderator dashboard
-   Bibek Howlader (23-54606-3)
-
-   Controls/loginControls.php already redirects a Moderator here:
-
-       header("Location: ../Views/moderatorDashboard.php");
-
-   but the file did not exist yet, so moderator login landed on a 404.
-   Two of my five requirements are moderator screens, so this dashboard
-   is the natural home for them and closes that gap.
-   ===================================================================== */
-
 session_start();
 
 if(!isset($_SESSION["u_id"]) || ($_SESSION["role"] != "Moderator" && $_SESSION["role"] != "Admin"))
@@ -46,8 +33,6 @@ $upcoming = getUpcomingMatches(6);
 <body>
 
     <div class="dashboard">
-
-                            <!-- SIDEBAR -->
 
         <div class="sidebar">
 
@@ -85,13 +70,7 @@ $upcoming = getUpcomingMatches(6);
 
         </div>
 
-
-                          <!-- MAIN CONTENT -->
-
         <div class="main-content">
-
-
-                            <!-- TOP CARDS -->
 
             <div class="top-cards">
 
@@ -132,9 +111,6 @@ $upcoming = getUpcomingMatches(6);
 
 
             </div>
-
-
-                         <!-- UPCOMING MATCHES -->
 
             <div class="events-card">
 

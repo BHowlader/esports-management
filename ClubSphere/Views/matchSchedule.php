@@ -1,11 +1,5 @@
 <?php
 
-/* =====================================================================
-   FR11 - Moderators shall be able to set and modify match times
-          within a tournament.
-   Bibek Howlader (23-54606-3)
-   ===================================================================== */
-
 require_once "../Controls/matchControls.php";
 
 ?>
@@ -46,9 +40,6 @@ require_once "../Controls/matchControls.php";
             <div class="msg err"><?php echo htmlspecialchars($_GET["errMsg"]); ?></div>
         <?php } ?>
 
-
-                          <!-- TOURNAMENT TABS -->
-
         <?php
 
         if(mysqli_num_rows($tournaments) > 0)
@@ -76,9 +67,6 @@ require_once "../Controls/matchControls.php";
         }
 
         ?>
-
-
-                              <!-- FIXTURES -->
 
         <h2>Fixtures</h2>
 

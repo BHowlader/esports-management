@@ -1,25 +1,4 @@
 <?php
-/* =====================================================================
-   FR15 - Admins shall be able to record income from sponsorships,
-          donations and entry fees.
-   Owner: Bibek Howlader (23-54606-3)
-
-   ---------------------------------------------------------------------
-   The SRS normalises finance to 3NF (proposal page 5): a generic
-   TRANSACTION row holds what every money movement has in common
-   (amount, date, who recorded it) and INCOME holds only what is
-   specific to money coming in (which sponsor, what kind of source).
-
-   So recording one income means writing TWO rows in TWO tables. If the
-   transaction row were written and the income row failed, the club
-   would have money in its ledger from an unknown source - which is
-   exactly the mismanagement FR15 exists to prevent. Both writes
-   therefore run inside one transaction.
-
-   The member who owns FR16 (expenses) writes to the SAME transaction
-   table with transaction_type = 'Expense' plus their own `expense`
-   table. Neither of us touches the other's file.
-   ===================================================================== */
 
 require_once "dbConnect.php";
 
@@ -33,16 +12,9 @@ function getAllSponsors()
     return mysqli_query($conn, $sql);
 }
 
-
-/* ---------------------------------------------------------------------
-   FR15 core. Returns true, or an error message.
-   $sponsor_id may be null - a donation or an entry fee has no sponsor.
-   ------------------------------------------------------------------- */
 function recordIncome($amount, $source_type, $source_name, $sponsor_id,
                       $category, $description, $transaction_date, $recorded_by)
 {
-    /* a sponsorship must name a sponsor from the directory,
-       anything else must not carry one */
     if($source_type == "Sponsorship")
     {
         if(empty($sponsor_id))
@@ -113,9 +85,6 @@ function recordIncome($amount, $source_type, $source_name, $sponsor_id,
     return true;
 }
 
-
-/* Ledger for the admin screen.
-   $filter_type is "" for all, or Sponsorship / Donation / Entry Fee. */
 function getIncomeRecords($filter_type)
 {
     $conn = dbConnection();
@@ -150,8 +119,6 @@ function getIncomeRecords($filter_type)
     return mysqli_stmt_get_result($stmt);
 }
 
-
-/* Totals per source type - the small summary cards at the top. */
 function getIncomeSummary()
 {
     $conn = dbConnection();
@@ -165,19 +132,6 @@ function getIncomeSummary()
     return mysqli_query($conn, $sql);
 }
 
-
-/* ---------------------------------------------------------------------
-   Total club fund = all income minus all expenses.
-
-   adminDashboard.php currently shows a hard coded "150,000 TK" on the
-   Club Fund card. Once FR16 (expenses) is merged this function returns
-   the real figure, so that card can become:
-
-       <span><?php echo number_format(getClubFund()); ?> TK</span>
-
-   It already works with only income recorded - expenses simply sum to
-   zero until that module lands.
-   ------------------------------------------------------------------- */
 function getClubFund()
 {
     $conn = dbConnection();
@@ -211,8 +165,6 @@ function deleteIncome($income_id)
 {
     $conn = dbConnection();
 
-    /* deleting the transaction cascades to the income row
-       (ON DELETE CASCADE), so the ledger can never keep an orphan */
     $sql = "DELETE t FROM transaction t
             JOIN income i ON i.transaction_id = t.transaction_id
             WHERE i.income_id = ?";

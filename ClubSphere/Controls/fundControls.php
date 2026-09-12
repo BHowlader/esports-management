@@ -1,34 +1,11 @@
 <?php
-/* =====================================================================
-   FR15 - record club income
-   Owner: Bibek Howlader (23-54606-3)
-   ===================================================================== */
 
-/* ---------------------------------------------------------------------
-   ob_start() must come before anything else in this file.
-
-   Models/dbConnect.php (FR1-FR5 module) has 30 blank lines after its
-   closing ?> tag. PHP sends those to the browser the moment the file is
-   included, and once ANY output has been sent, header() stops working -
-   so every redirect below would silently fail with "headers already
-   sent". XAMPP's default php.ini hides this because output_buffering is
-   on; with it off, even the login page stops redirecting.
-
-   The real fix is to delete those trailing blank lines - raised with the
-   FR1-FR5 owner, see docs/MERGE_NOTES.md. This line makes my controllers
-   work either way, so my module cannot be broken by someone else's
-   php.ini.
-   ------------------------------------------------------------------- */
 ob_start();
 
 session_start();
 
 require_once "../Models/fundModel.php";
 
-
-/* FR15 says ADMINS record income. Moderators are deliberately not
-   allowed here - money is the one area where the SRS gives the admin
-   sole responsibility. */
 if(!isset($_SESSION["u_id"]) || $_SESSION["role"] != "Admin")
 {
     echo "Access Denied!";
@@ -40,8 +17,6 @@ if($_SERVER["REQUEST_METHOD"] == "POST")
 {
     $back = "../Views/adminFund.php";
 
-
-                        /* FR15 - Delete a record */
     if(isset($_POST["delete"]))
     {
         $income_id = $_POST["income_id"];
@@ -58,8 +33,6 @@ if($_SERVER["REQUEST_METHOD"] == "POST")
         exit();
     }
 
-
-                          /* FR15 - Record income */
     $amount           = trim($_POST["amount"]);
     $source_type      = trim($_POST["source_type"]);
     $source_name      = trim($_POST["source_name"]);
@@ -79,8 +52,6 @@ if($_SERVER["REQUEST_METHOD"] == "POST")
     $errMsg = "";
     $hasErr = false;
 
-
-                              /* Amount */
     if($amount === "")
     {
         $hasErr = true;
@@ -102,8 +73,6 @@ if($_SERVER["REQUEST_METHOD"] == "POST")
         $errMsg = "That amount is too large!";
     }
 
-
-       /* Source type - checked against a whitelist, never trusted */
     $validTypes = array("Sponsorship", "Donation", "Entry Fee");
 
     if(!in_array($source_type, $validTypes))
@@ -112,8 +81,6 @@ if($_SERVER["REQUEST_METHOD"] == "POST")
         $errMsg = "Please choose a valid source type!";
     }
 
-
-                            /* Source name */
     if(empty($source_name))
     {
         $hasErr = true;
@@ -138,8 +105,6 @@ if($_SERVER["REQUEST_METHOD"] == "POST")
         $errMsg = "Description is too long! 255 characters maximum.";
     }
 
-
-                                /* Date */
     if(empty($transaction_date))
     {
         $hasErr = true;
@@ -206,9 +171,6 @@ if($_SERVER["REQUEST_METHOD"] == "POST")
 
     exit();
 }
-
-
-                     /* Data for Views/adminFund.php */
 
 if(isset($_GET["type"]))
 {

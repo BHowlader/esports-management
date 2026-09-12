@@ -1,16 +1,9 @@
-/* =====================================================================
-   FR13 - helpers for the verification screen
-   Bibek Howlader (23-54606-3)
-   ===================================================================== */
-
 document.addEventListener("DOMContentLoaded", function () {
 
     var forms = document.querySelectorAll(".verify-form");
 
     forms.forEach(function (form) {
 
-        /* a form with two submit buttons does not tell you which one was
-           pressed, so remember the last one clicked */
         var chosenAction = null;
 
         form.querySelectorAll("button[type=submit]").forEach(function (button) {

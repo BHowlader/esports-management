@@ -1,39 +1,7 @@
 <?php
-/* =====================================================================
-   FR14 - The system shall automatically update rankings and
-          leaderboards based on match outcomes.
-   Owner: Bibek Howlader (23-54606-3)
-
-   ---------------------------------------------------------------------
-   DESIGN DECISION (remember this one for the defense)
-
-   There are two ways to keep a leaderboard current.
-
-     (a) INCREMENTAL - when a result is verified, run
-         "UPDATE team_rating SET won = won + 1 ...".
-         Fast, but it drifts. If a moderator later corrects a wrong
-         result, or the Verify button is double clicked, the table is
-         silently wrong forever and nothing detects it.
-
-     (b) RECOMPUTE - delete the rows for that tournament and rebuild
-         them from every verified match_result.
-         This is idempotent: running it once or five times gives the
-         same answer, and every number on the leaderboard can be traced
-         back to the verified results behind it.
-
-   This project uses (b). A university club plays tens of matches, not
-   millions, so the cost is irrelevant and correctness wins. It runs
-   inside the same database transaction as the verification in FR13, so
-   the result and the standings can never disagree.
-
-   Points: win = 3, draw = 1, loss = 0.
-   ===================================================================== */
 
 require_once "dbConnect.php";
 
-
-/* $conn is passed in by FR13 so this joins the caller's transaction.
-   Called with nothing, it opens its own connection. */
 function recomputeLeaderboard($tournament_id, $conn = null)
 {
     if($conn == null)
@@ -46,7 +14,6 @@ function recomputeLeaderboard($tournament_id, $conn = null)
         }
     }
 
-    /* 1. clear the old standings for THIS tournament only */
     $stmt = mysqli_prepare($conn, "DELETE FROM team_rating WHERE tournament_id = ?");
 
     mysqli_stmt_bind_param($stmt, "i", $tournament_id);
@@ -56,8 +23,6 @@ function recomputeLeaderboard($tournament_id, $conn = null)
         return false;
     }
 
-    /* 2. every approved team starts on the board with zeros, so a team
-          that has not played yet is still visible instead of missing */
     $sql = "INSERT INTO team_rating (tournament_id, team_id)
             SELECT tr.tournament_id, tr.team_id
             FROM tournament_register tr
@@ -72,15 +37,6 @@ function recomputeLeaderboard($tournament_id, $conn = null)
         return false;
     }
 
-    /* 3. rebuild the numbers from the verified results.
-
-          The inner UNION ALL turns each match into TWO rows, one from
-          each team's point of view, with "rounds for" and "rounds
-          against" swapped. That makes the aggregate a plain GROUP BY
-          instead of a pile of CASE statements.
-
-          ON DUPLICATE KEY UPDATE fires because of the unique key
-          (tournament_id, team_id) created in step 2. */
     $sql = "INSERT INTO team_rating
                 (tournament_id, team_id, played, won, drawn, lost,
                  rounds_for, rounds_against, points)
@@ -136,10 +92,6 @@ function recomputeLeaderboard($tournament_id, $conn = null)
     }
 }
 
-
-/* Standings for one tournament, best team first.
-   Tie break: points, then round difference, then rounds scored, then
-   team name - so the order is stable between page loads. */
 function getTournamentStandings($tournament_id)
 {
     $conn = dbConnection();
@@ -163,8 +115,6 @@ function getTournamentStandings($tournament_id)
     return mysqli_stmt_get_result($stmt);
 }
 
-
-/* Club wide standings: the same rows summed across every tournament. */
 function getOverallStandings()
 {
     $conn = dbConnection();
@@ -186,16 +136,6 @@ function getOverallStandings()
     return mysqli_query($conn, $sql);
 }
 
-
-/* ---------------------------------------------------------------------
-   Helpers the member dashboard can use (FR1-FR5 module is welcome to
-   call these - they only read).
-
-   getUserTeam      : which team this member plays for
-   getRecentForm    : their team's last few results as W / D / L,
-                      which is exactly what the coloured boxes on
-                      memberDashboard.php are for
-   ------------------------------------------------------------------- */
 function getUserTeam($user_id)
 {
     $conn = dbConnection();

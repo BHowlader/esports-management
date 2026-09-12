@@ -1,15 +1,5 @@
 <?php
 
-/* =====================================================================
-   FR14 - The system shall automatically update rankings and
-          leaderboards based on match outcomes.
-   Bibek Howlader (23-54606-3)
-
-   This page only READS. Nothing on it can change a number. The
-   standings are written solely by the verification step in FR13, so
-   every row here traces back to a verified match result.
-   ===================================================================== */
-
 session_start();
 
 if(!isset($_SESSION["u_id"]))
@@ -95,9 +85,6 @@ else
 
         ?>
 
-
-                              <!-- TABS -->
-
         <div class="tabs">
 
             <a href="leaderboard.php?view=overall"
@@ -113,9 +100,6 @@ else
             <?php } ?>
 
         </div>
-
-
-                            <!-- STANDINGS -->
 
         <h2>
             <?php

@@ -1,12 +1,3 @@
-/* =====================================================================
-   FR12 - helpers for the result submission form
-   Bibek Howlader (23-54606-3)
-
-   The size and type checks below are repeated on the server in
-   Controls/resultControls.php. These exist only so the member gets an
-   instant answer instead of uploading 5 MB and then being told no.
-   ===================================================================== */
-
 document.addEventListener("DOMContentLoaded", function () {
 
     var matchSelect = document.getElementById("match_id");
@@ -20,9 +11,6 @@ document.addEventListener("DOMContentLoaded", function () {
     var MAX_BYTES = 2 * 1024 * 1024;
     var ALLOWED = ["image/jpeg", "image/png", "image/webp"];
 
-
-    /* rename "Score - team 1" to the real team names as soon as a match
-       is picked, so nobody enters the scores the wrong way round */
     if (matchSelect) {
 
         matchSelect.addEventListener("change", function () {
@@ -40,8 +28,6 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 
-
-    /* preview the screenshot and check it before uploading */
     if (fileInput) {
 
         fileInput.addEventListener("change", function () {
@@ -77,9 +63,6 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 
-
-    /* a result goes to a moderator and cannot be edited afterwards, so
-       confirm the scores are the right way round */
     if (form) {
 
         form.addEventListener("submit", function (event) {

@@ -1,25 +1,5 @@
 <?php
-/* =====================================================================
-   FR13 - verify / reject a submitted match result
-          (verifying also fires FR14, inside the model's transaction)
-   Owner: Bibek Howlader (23-54606-3)
-   ===================================================================== */
 
-/* ---------------------------------------------------------------------
-   ob_start() must come before anything else in this file.
-
-   Models/dbConnect.php (FR1-FR5 module) has 30 blank lines after its
-   closing ?> tag. PHP sends those to the browser the moment the file is
-   included, and once ANY output has been sent, header() stops working -
-   so every redirect below would silently fail with "headers already
-   sent". XAMPP's default php.ini hides this because output_buffering is
-   on; with it off, even the login page stops redirecting.
-
-   The real fix is to delete those trailing blank lines - raised with the
-   FR1-FR5 owner, see docs/MERGE_NOTES.md. This line makes my controllers
-   work either way, so my module cannot be broken by someone else's
-   php.ini.
-   ------------------------------------------------------------------- */
 ob_start();
 
 session_start();
@@ -52,8 +32,6 @@ if($_SERVER["REQUEST_METHOD"] == "POST")
         $remarks = substr($remarks, 0, 255);
     }
 
-
-                       /* FR13 - Verify and finalize */
     if(isset($_POST["verify"]))
     {
         if($remarks == "")
@@ -76,12 +54,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST")
         exit();
     }
 
-
-                            /* FR13 - Reject */
     else if(isset($_POST["reject"]))
     {
-        /* a rejection with no reason is useless to the team that has to
-           resubmit, so the reason is mandatory here */
         if($remarks == "")
         {
             header("Location:" . $back . "?errMsg=" .
@@ -108,9 +82,6 @@ if($_SERVER["REQUEST_METHOD"] == "POST")
     header("Location:" . $back . "?errMsg=" . urlencode("Unknown action!"));
     exit();
 }
-
-
-                   /* Data for Views/verifyResults.php */
 
 $pendingResults = getPendingResults();
 
