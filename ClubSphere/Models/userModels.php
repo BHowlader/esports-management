@@ -247,5 +247,4 @@ function getRegistrationData()
 
 
 
-?>
 
