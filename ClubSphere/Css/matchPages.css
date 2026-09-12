@@ -1,0 +1,461 @@
+/* =====================================================================
+   Shared styles for my five FR screens:
+     matchSchedule.php   submitResult.php   verifyResults.php
+     leaderboard.php     adminFund.php
+   Bibek Howlader (23-54606-3)
+
+   Built on the same tokens as Css/adminMembers.css so my pages sit
+   beside Maria's without a visual seam:
+       page          #e8edf7
+       panel         white, 25px radius
+       inner card    #f1f3f8, 15px radius
+       pill button   border-none, 20px radius, 13px Arial
+       approve       #a9e88e / #91d875
+       reject        #ed7777 / #df5f5f
+
+   NOTE FOR THE GROUP: this file is mine and covers only my screens.
+   Please do not add rules for your pages here, and I will not add mine
+   to yours. Five people editing one stylesheet on five branches means a
+   merge conflict on every single pull request.
+   ===================================================================== */
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    padding: 30px;
+    font-family: Arial, sans-serif;
+    background-color: #e8edf7;
+    min-height: 100vh;
+}
+
+
+                        /* MAIN CONTAINER */
+
+.page-container {
+    width: 90%;
+    max-width: 1000px;
+    margin: 0 auto;
+    background-color: white;
+    border-radius: 25px;
+    padding: 30px 40px 40px;
+}
+
+h1 {
+    text-align: center;
+    font-size: 22px;
+    font-weight: normal;
+    margin: 5px 0 8px;
+}
+
+.fr-note {
+    text-align: center;
+    font-size: 13px;
+    color: #777;
+    margin: 0 auto 25px;
+    max-width: 620px;
+    line-height: 1.6;
+}
+
+h2 {
+    font-size: 16px;
+    font-weight: normal;
+    margin: 30px 0 15px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid #e6e9f0;
+}
+
+
+                        /* BACK BUTTON */
+
+.back-button {
+    display: block;
+    width: 150px;
+    margin: 0 auto 25px;
+    padding: 9px;
+    text-align: center;
+    text-decoration: none;
+    color: #222;
+    background-color: #edf1f8;
+    border-radius: 20px;
+    font-size: 13px;
+}
+
+.back-button:hover {
+    background-color: #e2e7f0;
+}
+
+
+                          /* MESSAGES */
+
+.msg {
+    border-radius: 15px;
+    padding: 13px 20px;
+    margin-bottom: 20px;
+    font-size: 14px;
+}
+
+.msg.ok {
+    background-color: #e4f6da;
+    color: #3c6b26;
+}
+
+.msg.err {
+    background-color: #fbe2e2;
+    color: #a33b3b;
+}
+
+
+                            /* TABS */
+
+.tabs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+    margin-bottom: 25px;
+}
+
+.tabs a {
+    padding: 9px 20px;
+    border-radius: 20px;
+    background-color: #edf1f8;
+    text-decoration: none;
+    color: #222;
+    font-size: 13px;
+}
+
+.tabs a:hover {
+    background-color: #e2e7f0;
+}
+
+.tabs a.active {
+    background-color: #16aee5;
+    color: white;
+}
+
+
+                            /* CARDS */
+
+.item-card {
+    background-color: #f1f3f8;
+    border-radius: 15px;
+    padding: 20px 25px;
+    margin-bottom: 18px;
+}
+
+.item-card p {
+    margin: 8px 0;
+    font-size: 14px;
+}
+
+.item-card .fixture-title {
+    font-size: 16px;
+    margin: 0 0 6px;
+}
+
+.item-card .sub {
+    color: #666;
+    font-size: 13px;
+    margin: 4px 0;
+}
+
+.card-split {
+    display: flex;
+    gap: 25px;
+    flex-wrap: wrap;
+    align-items: flex-start;
+}
+
+.card-split .details {
+    flex: 2 1 320px;
+}
+
+.card-split .proof {
+    flex: 1 1 200px;
+}
+
+
+                          /* SUMMARY CARDS */
+
+.summary {
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+    margin-bottom: 25px;
+}
+
+.summary .stat {
+    flex: 1 1 170px;
+    background-color: #f1f3f8;
+    border-radius: 15px;
+    padding: 18px 20px;
+    text-align: center;
+}
+
+.summary .stat .label {
+    font-size: 13px;
+    color: #666;
+}
+
+.summary .stat .value {
+    font-size: 20px;
+    margin-top: 6px;
+}
+
+
+                        /* FORMS AND INPUTS */
+
+label {
+    display: block;
+    font-size: 13px;
+    color: #666;
+    margin-bottom: 6px;
+}
+
+input[type="text"],
+input[type="number"],
+input[type="date"],
+input[type="datetime-local"],
+input[type="file"],
+select,
+textarea {
+    width: 100%;
+    padding: 10px 14px;
+    border: 1px solid #dde2ec;
+    border-radius: 15px;
+    background-color: white;
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+    color: #222;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+    outline: none;
+    border-color: #16aee5;
+}
+
+textarea {
+    resize: vertical;
+    min-height: 70px;
+    border-radius: 15px;
+}
+
+.form-row {
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+    margin-bottom: 15px;
+}
+
+.form-row > div {
+    flex: 1 1 180px;
+}
+
+.form-row > div.full {
+    flex: 1 1 100%;
+}
+
+.hint {
+    font-size: 12px;
+    color: #888;
+    margin-top: 6px;
+}
+
+.hint.bad {
+    color: #c0392b;
+}
+
+
+                           /* BUTTONS */
+
+button {
+    border: none;
+    border-radius: 20px;
+    padding: 9px 22px;
+    font-size: 13px;
+    font-family: Arial, sans-serif;
+    cursor: pointer;
+    background-color: #edf1f8;
+    color: #222;
+}
+
+button:hover {
+    background-color: #e2e7f0;
+}
+
+button.primary {
+    background-color: #16aee5;
+    color: white;
+}
+
+button.primary:hover {
+    background-color: #1399ca;
+}
+
+button.approve {
+    background-color: #a9e88e;
+}
+
+button.approve:hover {
+    background-color: #91d875;
+}
+
+button.reject {
+    background-color: #ed7777;
+}
+
+button.reject:hover {
+    background-color: #df5f5f;
+}
+
+.button-area {
+    margin-top: 18px;
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+
+                    /* INLINE SCHEDULING FORM */
+
+.schedule-form {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    align-items: center;
+    margin-top: 14px;
+}
+
+.schedule-form input[type="datetime-local"] {
+    width: auto;
+    min-width: 215px;
+}
+
+.schedule-form input[type="text"] {
+    width: auto;
+    min-width: 150px;
+}
+
+.cancel-form {
+    display: inline-block;
+    margin-top: 10px;
+}
+
+
+                            /* TABLES */
+
+.table-scroll {
+    overflow-x: auto;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+    min-width: 560px;
+}
+
+th {
+    text-align: left;
+    font-size: 12px;
+    font-weight: normal;
+    color: #777;
+    padding: 0 12px 10px 0;
+    border-bottom: 2px solid #eceff5;
+}
+
+td {
+    padding: 12px 12px 12px 0;
+    border-bottom: 1px solid #f0f2f7;
+    vertical-align: middle;
+}
+
+tbody tr:last-child td {
+    border-bottom: none;
+}
+
+td.num,
+th.num {
+    text-align: right;
+}
+
+
+                       /* LEADERBOARD RANK */
+
+.rank {
+    font-size: 15px;
+    color: #999;
+    width: 40px;
+}
+
+tbody tr:nth-child(1) .rank {
+    color: #d4a017;
+}
+
+tbody tr:nth-child(2) .rank {
+    color: #9aa3b2;
+}
+
+tbody tr:nth-child(3) .rank {
+    color: #c08552;
+}
+
+
+                            /* STATUS PILLS */
+
+.pill {
+    display: inline-block;
+    padding: 4px 13px;
+    border-radius: 20px;
+    font-size: 12px;
+    background-color: #e8edf7;
+    color: #555;
+}
+
+.pill.Scheduled {
+    background-color: #d6ecfa;
+    color: #1c6f9c;
+}
+
+.pill.Completed,
+.pill.Verified {
+    background-color: #ddf3d0;
+    color: #4a7433;
+}
+
+.pill.Pending {
+    background-color: #fdeed2;
+    color: #97671a;
+}
+
+.pill.Cancelled,
+.pill.Rejected {
+    background-color: #fbdede;
+    color: #a04141;
+}
+
+
+                          /* SCREENSHOTS */
+
+.shot {
+    max-width: 100%;
+    width: 210px;
+    border-radius: 12px;
+    border: 1px solid #dde2ec;
+    display: block;
+}
+
+
+                          /* EMPTY STATE */
+
+.no-users {
+    text-align: center;
+    font-size: 14px;
+    color: #666;
+    padding: 30px;
+}
