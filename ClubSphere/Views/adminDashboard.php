@@ -45,7 +45,7 @@ require_once "../Controls/adminControls.php";
 
                 <a href="adminMembers.php">Members List</a>
 
-                <a href="#">Event Management</a>
+                <a href="eventManagement.php">Event Management</a>
 
                 <a href="#">Recruitment</a>
 

@@ -10,6 +10,7 @@ if(!isset($_SESSION["u_id"]))
 
 require_once "../Models/leaderboardModel.php";
 require_once "../Models/matchModel.php";
+require_once "../Models/tournamentModels.php";
 
 $tournaments = getAllTournaments();
 

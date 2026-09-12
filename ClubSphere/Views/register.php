@@ -38,9 +38,7 @@ $termsErr = $_GET["termsErr"] ?? "";
 
                 <label>Username</label>
 
-                <input type="text" name="name" placeholder="Enter your username" value="
-                <?php echo htmlspecialchars($name); ?>"
->
+                <input type="text" name="name" placeholder="Enter your username" value="<?php echo htmlspecialchars($name); ?>">
 
                 <span class="error"><?php echo $nameErr; ?>
                 </span>
@@ -78,9 +76,7 @@ $termsErr = $_GET["termsErr"] ?? "";
 
                 <label>Email</label>
 
-                <input type="email" name="email_id" placeholder="Enter your email" value="
-                <?php echo htmlspecialchars($email_id); ?>"
->
+                <input type="email" name="email_id" placeholder="Enter your email" value="<?php echo htmlspecialchars($email_id); ?>">
 
                 <span class="error">
                     <?php echo $emailErr; ?>
@@ -93,9 +89,7 @@ $termsErr = $_GET["termsErr"] ?? "";
 
                 <label>University ID</label>
 
-                <input type="text" name="uni_id" placeholder="Enter your university ID" value="
-                <?php echo htmlspecialchars($uni_id); ?>"
->
+                <input type="text" name="uni_id" placeholder="Enter your university ID" value="<?php echo htmlspecialchars($uni_id); ?>">
 
                 <span class="error">
                     <?php echo $uni_idErr; ?>

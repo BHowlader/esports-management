@@ -2,6 +2,7 @@
 
 require_once "dbConnect.php";
 require_once "leaderboardModel.php";
+require_once "bracketModels.php";
 
 function canSubmitForMatch($match_id, $user_id, $role)
 {
@@ -16,8 +17,8 @@ function canSubmitForMatch($match_id, $user_id, $role)
             FROM matches m
             JOIN team_member tm
                  ON tm.team_id IN (m.team1_id, m.team2_id)
-                AND tm.user_id = ?
-                AND tm.status  = 'Active'
+                AND tm.u_id = ?
+                AND tm.status  = 'Accepted'
             WHERE m.match_id = ?";
 
     $stmt = mysqli_prepare($conn, $sql);
@@ -182,7 +183,8 @@ function verifyResult($result_id, $moderator_id, $remarks)
 
     $sql = "SELECT r.result_id, r.match_id, r.score_team1, r.score_team2,
                    r.verification_status,
-                   m.team1_id, m.team2_id, m.tournament_id, m.status AS match_status
+                   m.team1_id, m.team2_id, m.tournament_id, m.round_no, m.slot_no,
+                   m.status AS match_status
             FROM match_result r
             JOIN matches m ON m.match_id = r.match_id
             WHERE r.result_id = ?
@@ -262,6 +264,27 @@ function verifyResult($result_id, $moderator_id, $remarks)
     {
         mysqli_rollback($conn);
         return "Could not finalize the match.";
+    }
+
+    if($winner_id != null)
+    {
+        $totalRounds = getTotalRounds($row["tournament_id"]);
+
+        if(!placeTeamInNextRound($row["tournament_id"], $row["round_no"], $row["slot_no"],
+                                 $winner_id, $totalRounds, $conn))
+        {
+            mysqli_rollback($conn);
+            return "Could not move the winner forward in the bracket.";
+        }
+
+        if($row["round_no"] == $totalRounds)
+        {
+            $stmt = mysqli_prepare($conn, "UPDATE tournament SET status = 'Completed' WHERE tournament_id = ?");
+
+            mysqli_stmt_bind_param($stmt, "i", $row["tournament_id"]);
+
+            mysqli_stmt_execute($stmt);
+        }
     }
 
     if(!recomputeLeaderboard($row["tournament_id"], $conn))

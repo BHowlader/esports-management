@@ -3,18 +3,6 @@
 require_once "dbConnect.php";
 
 
-function getAllTournaments()
-{
-    $conn = dbConnection();
-
-    $sql = "SELECT tournament_id, title, status
-            FROM tournament
-            ORDER BY start_date DESC";
-
-    return mysqli_query($conn, $sql);
-}
-
-
 function getMatchesByTournament($tournament_id)
 {
     $conn = dbConnection();
@@ -227,8 +215,8 @@ function getSubmittableMatchesForUser($user_id)
             JOIN team t2 ON t2.team_id = m.team2_id
             JOIN tournament tr ON tr.tournament_id = m.tournament_id
             JOIN team_member tm
-                 ON tm.user_id = ?
-                AND tm.status  = 'Active'
+                 ON tm.u_id = ?
+                AND tm.status  = 'Accepted'
                 AND tm.team_id IN (m.team1_id, m.team2_id)
             WHERE m.status = 'Scheduled'
             ORDER BY m.match_time ASC";
@@ -266,7 +254,8 @@ function countMatchesByStatus($status)
 {
     $conn = dbConnection();
 
-    $sql = "SELECT COUNT(*) AS total FROM matches WHERE status = ?";
+    $sql = "SELECT COUNT(*) AS total FROM matches
+            WHERE status = ? AND team1_id IS NOT NULL AND team2_id IS NOT NULL";
 
     $stmt = mysqli_prepare($conn, $sql);
 
