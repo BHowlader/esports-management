@@ -30,7 +30,7 @@ require_once "../Controls/memberDashboardControls.php";
 
                 <img src="../Images/member.png" class="member-icon">
 
-                <span>Hello, <?php echo $_SESSION["name"]; ?></span>
+                <span>Hello, <?php echo htmlspecialchars($_SESSION["name"]); ?></span>
 
             </div>
 
@@ -72,7 +72,7 @@ require_once "../Controls/memberDashboardControls.php";
               <p>Gaming Preference</p>
 
         <span>
-        <?php echo !empty($userProfile["game_type"]) ? $userProfile["game_type"] : "Not set"; ?>
+        <?php echo htmlspecialchars(!empty($userProfile["game_type"]) ? $userProfile["game_type"] : "Not set"); ?>
           </span>
 
              </div>
@@ -85,7 +85,7 @@ require_once "../Controls/memberDashboardControls.php";
                  <p>Ranking</p>
 
                <span>
-                <?php echo !empty($userProfile["ranking"]) ? $userProfile["ranking"] : "Not set"; ?>
+                <?php echo htmlspecialchars(!empty($userProfile["ranking"]) ? $userProfile["ranking"] : "Not set"); ?>
                </span>
 
                  </div>
@@ -98,7 +98,7 @@ require_once "../Controls/memberDashboardControls.php";
            <p>Social Media</p>
 
              <span>
-                <?php echo !empty($userProfile["social_link"]) ? $userProfile["social_link"] : "Not set"; ?>
+                <?php echo htmlspecialchars(!empty($userProfile["social_link"]) ? $userProfile["social_link"] : "Not set"); ?>
              </span>
 
           </div>

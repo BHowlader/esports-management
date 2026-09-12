@@ -35,7 +35,7 @@
 
             if(isset($_GET["message"]))
         {
-            echo "<p class='error-message' style='color: red;'>" . $_GET["message"] . "</p>";
+            echo "<p class='error-message' style='color: red;'>" . htmlspecialchars($_GET["message"]) . "</p>";
             
         }
 

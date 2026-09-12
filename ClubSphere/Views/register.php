@@ -40,7 +40,7 @@ $termsErr = $_GET["termsErr"] ?? "";
 
                 <input type="text" name="name" placeholder="Enter your username" value="<?php echo htmlspecialchars($name); ?>">
 
-                <span class="error"><?php echo $nameErr; ?>
+                <span class="error"><?php echo htmlspecialchars($nameErr); ?>
                 </span>
 
             </div>
@@ -53,7 +53,7 @@ $termsErr = $_GET["termsErr"] ?? "";
                 <input type="password" name="password" placeholder="Enter your password">
                 
 
-                <span class="error"><?php echo $passwordErr; ?>
+                <span class="error"><?php echo htmlspecialchars($passwordErr); ?>
                 </span>
 
             </div>
@@ -66,7 +66,7 @@ $termsErr = $_GET["termsErr"] ?? "";
                 <input type="password" name="confirmPassword" placeholder="Re-enter your password">
 
                 <span class="error">
-                    <?php echo $confirmPasswordErr; ?>
+                    <?php echo htmlspecialchars($confirmPasswordErr); ?>
                 </span>
 
             </div>
@@ -79,7 +79,7 @@ $termsErr = $_GET["termsErr"] ?? "";
                 <input type="email" name="email_id" placeholder="Enter your email" value="<?php echo htmlspecialchars($email_id); ?>">
 
                 <span class="error">
-                    <?php echo $emailErr; ?>
+                    <?php echo htmlspecialchars($emailErr); ?>
                 </span>
 
             </div>
@@ -92,7 +92,7 @@ $termsErr = $_GET["termsErr"] ?? "";
                 <input type="text" name="uni_id" placeholder="Enter your university ID" value="<?php echo htmlspecialchars($uni_id); ?>">
 
                 <span class="error">
-                    <?php echo $uni_idErr; ?>
+                    <?php echo htmlspecialchars($uni_idErr); ?>
                 </span>
 
             </div>
@@ -110,7 +110,7 @@ $termsErr = $_GET["termsErr"] ?? "";
             </div>
 
             <span class="error terms-error">
-                <?php echo $termsErr; ?>
+                <?php echo htmlspecialchars($termsErr); ?>
             </span>
 
 

@@ -38,13 +38,13 @@ require_once "../Controls/adminControls.php";
 
             <div class="member-card">
 
-                <p>Name: <?php echo $user["name"]; ?></p>
+                <p>Name: <?php echo htmlspecialchars($user["name"]); ?></p>
 
-                <p>University ID: <?php echo $user["uni_id"]; ?></p>
+                <p>University ID: <?php echo htmlspecialchars($user["uni_id"]); ?></p>
 
-                <p>Email: <?php echo $user["email_id"]; ?></p>
+                <p>Email: <?php echo htmlspecialchars($user["email_id"]); ?></p>
 
-                <p>Status: <?php echo $user["status"]; ?></p>
+                <p>Status: <?php echo htmlspecialchars($user["status"]); ?></p>
 
 
                 <form action="../Controls/adminControls.php" method="post">
@@ -88,13 +88,13 @@ require_once "../Controls/adminControls.php";
 
             <div class="member-card">
 
-                <p>Name: <?php echo $user["name"]; ?></p>
+                <p>Name: <?php echo htmlspecialchars($user["name"]); ?></p>
 
-                <p>University ID: <?php echo $user["uni_id"]; ?></p>
+                <p>University ID: <?php echo htmlspecialchars($user["uni_id"]); ?></p>
 
-                <p>Email: <?php echo $user["email_id"]; ?></p>
+                <p>Email: <?php echo htmlspecialchars($user["email_id"]); ?></p>
 
-                <p>Current Role: <?php echo $user["role"]; ?></p>
+                <p>Current Role: <?php echo htmlspecialchars($user["role"]); ?></p>
 
 
                 <form action="../Controls/adminControls.php" method="post">
