@@ -47,19 +47,17 @@ require_once "../Controls/adminControls.php";
 
                 <a href="eventManagement.php">Event Management</a>
 
-                <a href="#">Recruitment</a>
+                <a href="adminFund.php">Fund</a>
 
-                <a href="#">Fund</a>
+                <a href="expenses.php">Expenses</a>
 
-                <a href="#">Inventory</a>
+                <a href="equipment.php">Inventory</a>
 
                 <a href="news.php">News</a>
 
                 <a href="sponsors.php">Sponsors</a>
 
                 <a href="backup.php">Backup</a>
-
-                <a href="#">Settings</a>
 
             </div>
 

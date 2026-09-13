@@ -45,8 +45,6 @@ require_once "../Controls/memberDashboardControls.php";
 
                 <a href="news.php">News</a>
 
-                <a href="#">Reports</a>
-
                 <a href="profile.php">User Profile</a>
 
             </div>
