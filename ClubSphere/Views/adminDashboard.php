@@ -53,6 +53,12 @@ require_once "../Controls/adminControls.php";
 
                 <a href="#">Inventory</a>
 
+                <a href="news.php">News</a>
+
+                <a href="sponsors.php">Sponsors</a>
+
+                <a href="backup.php">Backup</a>
+
                 <a href="#">Settings</a>
 
             </div>

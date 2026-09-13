@@ -1,0 +1,30 @@
+body
+{
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #f2f4f7;
+}
+
+.container
+{
+    width: 90%;
+    margin: 40px auto;
+}
+
+.user-card
+{
+    background: white;
+    padding: 18px;
+    margin-bottom: 15px;
+    border-radius: 8px;
+}
+
+.delete-btn
+{
+    background: #c62828;
+    color: white;
+    border: none;
+    padding: 9px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+}

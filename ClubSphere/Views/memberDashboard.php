@@ -43,7 +43,9 @@ require_once "../Controls/memberDashboardControls.php";
 
                 <a href="#">Events</a>
 
-                <a href="#">Notification</a>
+                <a href="alerts.php">Notification</a>
+
+                <a href="news.php">News</a>
 
                 <a href="#">Reports</a>
 
