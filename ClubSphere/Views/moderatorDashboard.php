@@ -65,6 +65,10 @@ $upcoming = getUpcomingMatches(6);
 
                 <a href="tournaments.php">Tournaments</a>
 
+                <a href="news.php">News</a>
+
+                <a href="alerts.php">Alerts</a>
+
                 <a href="profile.php">User Profile</a>
 
             </div>

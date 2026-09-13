@@ -35,6 +35,8 @@ config.local.php
 *.sql.gz
 backup/
 dump_*.sql
+ClubSphere/backups/*
+!ClubSphere/backups/.htaccess
 
 # --- logs ------------------------------------------------------------
 *.log

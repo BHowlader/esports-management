@@ -1,0 +1,53 @@
+body
+{
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #f2f4f7;
+}
+
+.container
+{
+    width: 85%;
+    margin: 40px auto;
+}
+
+h1
+{
+    margin-bottom: 20px;
+}
+
+.alert-card,
+.match-card
+{
+    background: white;
+    padding: 18px;
+    margin-bottom: 15px;
+    border-radius: 8px;
+}
+
+.alert-card.unread
+{
+    border-left: 5px solid #333;
+}
+
+.alert-card h3,
+.match-card h3
+{
+    margin-top: 0;
+}
+
+.info
+{
+    color: #777;
+    font-size: 14px;
+}
+
+button
+{
+    padding: 8px 14px;
+    border: none;
+    border-radius: 5px;
+    background: #333;
+    color: white;
+    cursor: pointer;
+}
