@@ -204,6 +204,22 @@ button:hover {
 }
 
 
+                              /* Login link */
+
+.switch-link {
+
+    text-align: center;
+
+    text-decoration: none;
+
+    color: #7c8bd6;
+
+    font-size: 12px;
+
+    margin-top: 14px;
+}
+
+
                                   /* Footer */
 
 .footer {

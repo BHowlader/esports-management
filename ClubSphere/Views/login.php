@@ -29,7 +29,9 @@
            
 
             <button type="submit" name="submit">Login</button>
-            
+
+            <a href="register.php" class="switch-link">Don't have an account? Register</a>
+
 
             <?php
 

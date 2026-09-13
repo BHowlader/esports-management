@@ -78,6 +78,10 @@ a {
     margin-top: -5px;
 }
 
+.switch-link {
+    margin-top: 14px;
+}
+
 button {
     width: 75px;
     height: 25px;

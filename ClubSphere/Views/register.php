@@ -116,6 +116,8 @@ $termsErr = $_GET["termsErr"] ?? "";
 
             <button type="submit" name="submit">Register</button>
 
+            <a href="login.php" class="switch-link">Already have an account? Login</a>
+
         </form>
 
     </div>
