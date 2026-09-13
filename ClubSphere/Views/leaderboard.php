@@ -63,12 +63,6 @@ else
 
         <h1>Leaderboard</h1>
 
-        <p class="fr-note">
-            FR14 &mdash; win = 3 points, draw = 1, loss = 0. Ties are broken by
-            round difference, then rounds won. Updated automatically the moment a
-            moderator verifies a result.
-        </p>
-
         <?php
 
         if($_SESSION["role"] == "Member")
@@ -198,7 +192,7 @@ else
 
         <p class="hint" style="margin-top:14px">
             P played &middot; W won &middot; D drawn &middot; L lost &middot;
-            RF rounds for &middot; RA rounds against &middot; Diff round difference &middot; Pts points.
+            RF rounds for &middot; RA rounds against &middot; Diff round difference &middot; Pts points (win 3, draw 1, loss 0).
             Click a column heading to re-sort.
         </p>
 
@@ -206,8 +200,7 @@ else
         }
         else
         {
-            echo "<p class='no-users'>No standings yet. As soon as the first match result "
-               . "is verified, the table appears here.</p>";
+            echo "<p class='no-users'>No standings yet.</p>";
         }
         ?>
 

@@ -23,13 +23,6 @@ require_once "../Controls/verifyControls.php";
 
         <h1>Verify Match Results</h1>
 
-        <p class="fr-note">
-            FR13 &mdash; verifying a result finalizes the match and rebuilds the
-            leaderboard in the same database transaction, so the two can never
-            disagree. Rejected submissions are kept, not deleted &mdash; that is
-            the audit trail.
-        </p>
-
         <a href="moderatorDashboard.php" class="back-button">Back</a>
 
 

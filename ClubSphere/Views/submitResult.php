@@ -23,11 +23,6 @@ require_once "../Controls/resultControls.php";
 
         <h1>Submit Match Result</h1>
 
-        <p class="fr-note">
-            FR12 &mdash; upload the score and a screenshot as proof.
-            A moderator verifies it before it counts towards the leaderboard (FR13).
-        </p>
-
         <?php
 
         if($_SESSION["role"] == "Member")
@@ -153,8 +148,7 @@ require_once "../Controls/resultControls.php";
         }
         else
         {
-            echo "<p class='no-users'>You have no scheduled matches to report right now. "
-               . "A match appears here once a moderator has scheduled it (FR11).</p>";
+            echo "<p class='no-users'>You have no scheduled matches to report right now.</p>";
         }
         ?>
 

@@ -23,16 +23,7 @@ h1 {
     text-align: center;
     font-size: 22px;
     font-weight: normal;
-    margin: 5px 0 8px;
-}
-
-.fr-note {
-    text-align: center;
-    font-size: 13px;
-    color: #777;
-    margin: 0 auto 25px;
-    max-width: 620px;
-    line-height: 1.6;
+    margin: 5px 0 22px;
 }
 
 h2 {

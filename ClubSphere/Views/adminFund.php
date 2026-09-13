@@ -21,13 +21,7 @@ require_once "../Controls/fundControls.php";
 
     <div class="page-container">
 
-        <h1>Club Fund &mdash; Income</h1>
-
-        <p class="fr-note">
-            FR15 &mdash; writes one row to <b>transaction</b> and one to
-            <b>income</b> inside a single database transaction, so the ledger can
-            never hold money from an unknown source.
-        </p>
+        <h1>Club Income</h1>
 
         <a href="adminDashboard.php" class="back-button">Back</a>
 
@@ -112,7 +106,7 @@ require_once "../Controls/fundControls.php";
 
                     </select>
 
-                    <div class="hint">Sponsors come from the sponsor directory (FR25).</div>
+                    <div class="hint">Sponsors come from the sponsor directory.</div>
 
                 </div>
 

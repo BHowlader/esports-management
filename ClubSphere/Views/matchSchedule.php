@@ -23,12 +23,6 @@ require_once "../Controls/matchControls.php";
 
         <h1>Match Scheduling</h1>
 
-        <p class="fr-note">
-            FR11 &mdash; set and modify match times within a tournament.
-            A match that is already <b>Completed</b> is locked: its schedule is
-            part of the verified record and cannot be rewritten.
-        </p>
-
         <a href="moderatorDashboard.php" class="back-button">Back</a>
 
 
@@ -63,7 +57,7 @@ require_once "../Controls/matchControls.php";
         }
         else
         {
-            echo "<p class='no-users'>No tournaments exist yet. They are created in the Tournament module (FR8).</p>";
+            echo "<p class='no-users'>No tournaments yet.</p>";
         }
 
         ?>
@@ -187,8 +181,7 @@ require_once "../Controls/matchControls.php";
         }
         else
         {
-            echo "<p class='no-users'>No matches in this tournament yet. "
-               . "Matches are created by the bracket generator (FR10).</p>";
+            echo "<p class='no-users'>No matches in this tournament yet. Generate the bracket first.</p>";
         }
 
         ?>
