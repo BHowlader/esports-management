@@ -41,6 +41,10 @@ require_once "../Controls/memberDashboardControls.php";
 
                 <a href="tournaments.php">Tournaments</a>
 
+                <a href="submitResult.php">Submit Result</a>
+
+                <a href="leaderboard.php">Leaderboard</a>
+
                 <a href="alerts.php">Notification</a>
 
                 <a href="news.php">News</a>
