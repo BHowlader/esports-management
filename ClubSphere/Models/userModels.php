@@ -1,15 +1,20 @@
 <?php
 require_once "dbConnect.php";
-function registerUser($name,$uni_id, $email_id, $password)
+
+
+
+
+
+function registerUser($name, $uni_id, $email_id, $password)
 {
-    $conn=dbConnection();
+    $conn = dbConnection();
 
-    if($conn){
-        $sql="INSERT INTO users (name, uni_id, email_id, password) Values (?,?,?,?)";
+    if ($conn) {
+        $sql = "INSERT INTO users (name, uni_id, email_id, password) Values (?,?,?,?)";
 
 
-        $stmt=mysqli_prepare($conn,$sql);
-        
+        $stmt = mysqli_prepare($conn, $sql);
+
         mysqli_stmt_bind_param(
             $stmt,
             "ssss",
@@ -19,21 +24,22 @@ function registerUser($name,$uni_id, $email_id, $password)
             $password
         );
 
-        if(mysqli_stmt_execute($stmt))
-        {
+        if (mysqli_stmt_execute($stmt)) {
             return true;
 
-        }
-        else{
+        } else {
             return false;
 
         }
-    }
-    else{
+    } else {
         return false;
     }
 }
-                         //check if existing
+
+
+
+
+//check if existing
 
 function checkUserExists($name, $email_id, $uni_id)
 {
@@ -60,6 +66,11 @@ function checkUserExists($name, $email_id, $uni_id)
     return $result;
 }
 
+
+
+
+
+
 function loginUser($name)
 {
     $conn = dbConnection();
@@ -82,6 +93,11 @@ function loginUser($name)
 
     return $result;
 }
+
+
+
+
+
 function updateProfile($u_id, $game_type, $ranking, $social_link)
 {
     $conn = dbConnection();
@@ -101,15 +117,17 @@ function updateProfile($u_id, $game_type, $ranking, $social_link)
         $u_id
     );
 
-    if(mysqli_stmt_execute($stmt))
-    {
+    if (mysqli_stmt_execute($stmt)) {
         return true;
-    }
-    else
-    {
+    } else {
         return false;
     }
 }
+
+
+
+
+
 
 function getPendingUsers()
 {
@@ -140,15 +158,18 @@ function updateUserStatus($u_id, $status)
         $u_id
     );
 
-    if(mysqli_stmt_execute($stmt))
-    {
+    if (mysqli_stmt_execute($stmt)) {
         return true;
-    }
-    else
-    {
+    } else {
         return false;
     }
 }
+
+
+
+
+
+
 function updateUserRole($u_id, $role)
 {
     $conn = dbConnection();
@@ -166,15 +187,17 @@ function updateUserRole($u_id, $role)
         $u_id
     );
 
-    if(mysqli_stmt_execute($stmt))
-    {
+    if (mysqli_stmt_execute($stmt)) {
         return true;
-    }
-    else
-    {
+    } else {
         return false;
     }
 }
+
+
+
+
+
 
 
 function getApprovedUsers()
@@ -213,6 +236,13 @@ function getUserProfile($u_id)
     return mysqli_fetch_assoc($result);
 }
 
+
+
+
+
+
+
+
 function getTotalApprovedMembers()
 {
     $conn = dbConnection();
@@ -227,22 +257,22 @@ function getTotalApprovedMembers()
 
     return $row["total"];
 }
-              
-            /*AJAX*/
 
-            
+/*AJAX*/
+
+
 function getRegistrationData()
-    {
-        $conn = dbConnection();
-            
-        $sql = "SELECT COUNT(*) AS total FROM users WHERE created_at >= NOW() - INTERVAL 3 MINUTE";
-            
-            $result = mysqli_query($conn, $sql);
-            
-            $row = mysqli_fetch_assoc($result);
-            
-            return $row["total"];
-    }
+{
+    $conn = dbConnection();
+
+    $sql = "SELECT COUNT(*) AS total FROM users WHERE created_at >= NOW() - INTERVAL 3 MINUTE";
+
+    $result = mysqli_query($conn, $sql);
+
+    $row = mysqli_fetch_assoc($result);
+
+    return $row["total"];
+}
 
 
 

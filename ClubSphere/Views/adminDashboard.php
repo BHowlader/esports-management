@@ -20,9 +20,14 @@ require_once "../Controls/adminControls.php";
 
 <body>
 
+
+
+
+
+
     <div class="dashboard">
 
-                     <!-- SIDEBAR -->
+        <!-- SIDEBAR -->
 
         <div class="sidebar">
 
@@ -39,6 +44,11 @@ require_once "../Controls/adminControls.php";
                 <span>Admin Panel</span>
 
             </div>
+
+
+
+
+
 
 
             <div class="menu">
@@ -62,12 +72,17 @@ require_once "../Controls/adminControls.php";
             </div>
 
 
+
+
+
+
+
             <a href="logout.php" class="logout">Logout</a>
 
         </div>
 
 
-                           <!-- MAIN CONTENT -->
+        <!-- MAIN CONTENT -->
 
         <div class="main-content">
 
@@ -77,15 +92,20 @@ require_once "../Controls/adminControls.php";
             <div class="top-cards">
 
 
-            <div class="card team-card">
+                <div class="card team-card">
 
-                <img src="../Images/prx.png">
+                    <img src="../Images/prx.png">
 
-                 <p>PRX</p>
+                    <p>PRX</p>
 
-                
 
-</div>
+
+                </div>
+
+
+
+
+
 
 
                 <div class="card members-card">
@@ -113,7 +133,12 @@ require_once "../Controls/adminControls.php";
             </div>
 
 
-                        <!-- UPCOMING EVENTS -->
+
+
+
+
+
+            <!-- UPCOMING EVENTS -->
 
             <div class="events-card">
 
@@ -121,9 +146,9 @@ require_once "../Controls/adminControls.php";
 
                 <div class="events-box">
 
-                   <div class="events-top"></div>
+                    <div class="events-top"></div>
 
-                      <div class="events-message">There is no upcoming event currently
+                    <div class="events-message">There is no upcoming event currently
                     </div>
 
                 </div>
@@ -137,46 +162,47 @@ require_once "../Controls/adminControls.php";
 
                 </div>
 
-                </div>
-
             </div>
 
-
         </div>
+
+
+    </div>
 
     </div>
 
     <script>
 
-function loadRegistrationData()
-{
-    let ajax = new XMLHttpRequest();
 
-    ajax.open(
-        "GET",
-        "../Controls/registrationGraph.php",
-        true
-    );
 
-    ajax.onload = function()
-    {
-        if(ajax.status == 200)
-        {
-            let data = JSON.parse(ajax.responseText);
 
-            document.getElementById("registrationCount").innerHTML = data.total;
+
+        function loadRegistrationData() {
+            let ajax = new XMLHttpRequest();
+
+            ajax.open(
+                "GET",
+                "../Controls/registrationGraph.php",
+                true
+            );
+
+            ajax.onload = function () {
+                if (ajax.status == 200) {
+                    let data = JSON.parse(ajax.responseText);
+
+                    document.getElementById("registrationCount").innerHTML = data.total;
+                }
+            };
+
+            ajax.send();
         }
-    };
-
-    ajax.send();
-}
 
 
-loadRegistrationData();
+        loadRegistrationData();
 
-setInterval(loadRegistrationData, 180000);
+        setInterval(loadRegistrationData, 180000);
 
-</script>
+    </script>
 </body>
 
 </html>

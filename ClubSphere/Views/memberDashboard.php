@@ -15,11 +15,17 @@ require_once "../Controls/memberDashboardControls.php";
     <link rel="stylesheet" href="../Css/memberDashboard.css">
 </head>
 
+
+
+
+
+
+
 <body>
 
     <div class="dashboard">
 
-                                        <!-- SIDEBAR -->
+        <!-- SIDEBAR -->
         <div class="sidebar">
 
             <img src="../Images/logo.png" class="logo">
@@ -35,6 +41,11 @@ require_once "../Controls/memberDashboardControls.php";
             </div>
 
 
+
+
+
+
+
             <div class="menu">
 
                 <a href="teams.php">Teams</a>
@@ -47,7 +58,17 @@ require_once "../Controls/memberDashboardControls.php";
 
                 <a href="profile.php">User Profile</a>
 
+
+
+
+
+
             </div>
+
+
+
+
+
 
 
             <a href="logout.php" class="logout">Logout</a>
@@ -55,56 +76,75 @@ require_once "../Controls/memberDashboardControls.php";
         </div>
 
 
-                  <!-- MAIN CONTENT -->
+
+
+
+
+
+
+
+        <!-- MAIN CONTENT -->
         <div class="main-content">
 
 
-                                      <!-- TOP CARDS -->
+            <!-- TOP CARDS -->
 
-    <div class="top-cards">
+            <div class="top-cards">
 
-          <div class="card">
+                <div class="card">
 
-          <img src="../Images/prx.png" alt="Gaming">
+                    <img src="../Images/prx.png" alt="Gaming">
 
-              <p>Gaming Preference</p>
+                    <p>Gaming Preference</p>
 
-        <span>
-        <?php echo htmlspecialchars(!empty($userProfile["game_type"]) ? $userProfile["game_type"] : "Not set"); ?>
-          </span>
 
-             </div>
+
+
+                    <span>
+                        <?php echo htmlspecialchars(!empty($userProfile["game_type"]) ? $userProfile["game_type"] : "Not set"); ?>
+                    </span>
+
+                </div>
 
 
                 <div class="card">
 
-                <img src="../Images/trophy.png" alt="Ranking">
+                    <img src="../Images/trophy.png" alt="Ranking">
 
-                 <p>Ranking</p>
+                    <p>Ranking</p>
 
-               <span>
-                <?php echo htmlspecialchars(!empty($userProfile["ranking"]) ? $userProfile["ranking"] : "Not set"); ?>
-               </span>
+                    <span>
+                        <?php echo htmlspecialchars(!empty($userProfile["ranking"]) ? $userProfile["ranking"] : "Not set"); ?>
+                    </span>
 
-                 </div>
-
-
-           <div class="card">
-
-           <img src="../Images/champion.png" alt="Social Media">
-
-           <p>Social Media</p>
-
-             <span>
-                <?php echo htmlspecialchars(!empty($userProfile["social_link"]) ? $userProfile["social_link"] : "Not set"); ?>
-             </span>
-
-          </div>
-
-   </div>
+                </div>
 
 
-                                   <!-- UPCOMING EVENTS -->
+
+
+
+
+
+                <div class="card">
+
+                    <img src="../Images/champion.png" alt="Social Media">
+
+                    <p>Social Media</p>
+
+                    <span>
+                        <?php echo htmlspecialchars(!empty($userProfile["social_link"]) ? $userProfile["social_link"] : "Not set"); ?>
+                    </span>
+
+                </div>
+
+            </div>
+
+
+
+
+
+
+            <!-- UPCOMING EVENTS -->
 
             <div class="events-card">
 

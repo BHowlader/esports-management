@@ -1,11 +1,17 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <title>ClubSphere Login</title>
     <link rel="stylesheet" href="../Css/login.css">
 </head>
 
 <body>
+
+
+
+
+
 
     <div class="login-container">
 
@@ -25,8 +31,14 @@
                 <input type="password" name="password" placeholder="Enter your password">
             </div>
 
+
+
+
+
+
+
             <a href="#">Reset Password</a><br>
-           
+
 
             <button type="submit" name="submit">Login</button>
 
@@ -35,13 +47,16 @@
 
             <?php
 
-            if(isset($_GET["message"]))
-        {
-            echo "<p class='error-message' style='color: red;'>" . htmlspecialchars($_GET["message"]) . "</p>";
-            
-        }
+            if (isset($_GET["message"])) {
+                echo "<p class='error-message' style='color: red;'>" . htmlspecialchars($_GET["message"]) . "</p>";
+
+            }
 
             ?>
+
+
+
+
 
         </form>
 
@@ -50,4 +65,5 @@
     <div class="footer">ClubSphere</div>
 
 </body>
+
 </html>
