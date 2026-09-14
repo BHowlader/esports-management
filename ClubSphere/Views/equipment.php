@@ -5,12 +5,12 @@ require_once "../Controls/equipmentControls.php";
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+
 <head>
-    <meta charset="UTF-8">
     <title>ClubSphere - Equipment Management</title>
     <link rel="stylesheet" href="../Css/expensePages.css">
 </head>
+
 <body class="page-equipment">
 
     <a href="adminDashboard.php" class="back-link">&larr; Back to Dashboard</a>
@@ -18,11 +18,11 @@ require_once "../Controls/equipmentControls.php";
 
     <h1>ClubSphere Equipment Panel</h1>
 
-    <?php if(isset($_GET["okMsg"])) { ?>
+    <?php if (isset($_GET["okMsg"])) { ?>
         <div class="msg msg-ok"><?php echo htmlspecialchars($_GET["okMsg"]); ?></div>
     <?php } ?>
 
-    <?php if(isset($_GET["errMsg"])) { ?>
+    <?php if (isset($_GET["errMsg"])) { ?>
         <div class="msg msg-err"><?php echo htmlspecialchars($_GET["errMsg"]); ?></div>
     <?php } ?>
 
@@ -37,14 +37,14 @@ require_once "../Controls/equipmentControls.php";
 
             <label>Condition:</label>
             <select name="item_condition">
-                <?php foreach($validConditions as $condition) { ?>
+                <?php foreach ($validConditions as $condition) { ?>
                     <option value="<?php echo $condition; ?>"><?php echo $condition; ?></option>
                 <?php } ?>
             </select>
 
             <label>Status:</label>
             <select name="status">
-                <?php foreach($validStatuses as $status) { ?>
+                <?php foreach ($validStatuses as $status) { ?>
                     <option value="<?php echo $status; ?>"><?php echo $status; ?></option>
                 <?php } ?>
             </select>
@@ -62,44 +62,45 @@ require_once "../Controls/equipmentControls.php";
             <th>Change Condition &amp; Status</th>
         </tr>
         <?php
-        if(mysqli_num_rows($items) > 0)
-        {
-            while($item = mysqli_fetch_assoc($items))
-            {
-        ?>
-        <tr>
-            <td><?php echo $item["item_id"]; ?></td>
-            <td><strong><?php echo htmlspecialchars($item["item_name"]); ?></strong></td>
-            <td><?php echo htmlspecialchars($item["category"]); ?></td>
-            <td>
-                <form method="post" action="../Controls/equipmentControls.php" class="inline-form">
-                    <input type="hidden" name="equipment_id" value="<?php echo $item["item_id"]; ?>">
+        if (mysqli_num_rows($items) > 0) {
+            while ($item = mysqli_fetch_assoc($items)) {
+                ?>
+                <tr>
+                    <td><?php echo $item["item_id"]; ?></td>
+                    <td><strong><?php echo htmlspecialchars($item["item_name"]); ?></strong></td>
+                    <td><?php echo htmlspecialchars($item["category"]); ?></td>
+                    <td>
+                        <form method="post" action="../Controls/equipmentControls.php" class="inline-form">
+                            <input type="hidden" name="equipment_id" value="<?php echo $item["item_id"]; ?>">
 
-                    <select name="item_condition" class="action-select">
-                        <?php foreach($validConditions as $condition) { ?>
-                            <option value="<?php echo $condition; ?>" <?php if($item["item_condition"] == $condition) echo "selected"; ?>><?php echo $condition; ?></option>
-                        <?php } ?>
-                    </select>
+                            <select name="item_condition" class="action-select">
+                                <?php foreach ($validConditions as $condition) { ?>
+                                    <option value="<?php echo $condition; ?>" <?php if ($item["item_condition"] == $condition)
+                                           echo "selected"; ?>><?php echo $condition; ?></option>
+                                <?php } ?>
+                            </select>
 
-                    <select name="status" class="action-select">
-                        <?php foreach($validStatuses as $status) { ?>
-                            <option value="<?php echo $status; ?>" <?php if($item["status"] == $status) echo "selected"; ?>><?php echo $status; ?></option>
-                        <?php } ?>
-                    </select>
+                            <select name="status" class="action-select">
+                                <?php foreach ($validStatuses as $status) { ?>
+                                    <option value="<?php echo $status; ?>" <?php if ($item["status"] == $status)
+                                           echo "selected"; ?>>
+                                        <?php echo $status; ?>
+                                    </option>
+                                <?php } ?>
+                            </select>
 
-                    <button type="submit" name="update_equipment" class="btn-update">Update</button>
-                </form>
-            </td>
-        </tr>
-        <?php
+                            <button type="submit" name="update_equipment" class="btn-update">Update</button>
+                        </form>
+                    </td>
+                </tr>
+                <?php
             }
-        }
-        else
-        {
+        } else {
             echo "<tr><td colspan='4' class='empty'>No equipment found in the database.</td></tr>";
         }
         ?>
     </table>
 
 </body>
+
 </html>
