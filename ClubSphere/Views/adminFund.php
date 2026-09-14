@@ -72,7 +72,7 @@ require_once "../Controls/fundControls.php";
 
                 <div>
                     <label for="amount">Amount (TK)</label>
-                    <input type="number" name="amount" id="amount" min="0.01" step="0.01" required placeholder="0.00">
+                    <input type="number" name="amount" id="amount" min="1" step="1" required placeholder="1">
                 </div>
 
                 <div>
